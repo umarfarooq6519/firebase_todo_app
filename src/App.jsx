@@ -10,6 +10,9 @@ import Dashboard from "./pages/Dashboard";
 import { useState } from "react";
 
 const googleProvider = new GoogleAuthProvider();
+googleProvider.setCustomParameters({
+  prompt: "select_account",
+});
 
 function App() {
   const [user, setUser] = useState(null);
