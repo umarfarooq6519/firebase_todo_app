@@ -1,0 +1,98 @@
+:root {
+  /* ##### font family variables ##### */
+  --font-family-body: General Sans, sans-serif;
+
+  /* ##### font size variables ##### */
+  --font-xs-size: 13px;
+  --font-sm-size: 15px;
+  --font-base-size: 16px;
+  --font-lg-size: 18px;
+
+  /* ##### font weight variables ##### */
+  --font-weight-light: 400;
+  --font-weight-normal: 450;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 650;
+  --font-weight-extrabold: 700;
+
+  /* theme color variables */
+  --global-bg-color: #eeeeee;
+  --global-text-color: #1c1c1c;
+  --global-green-color: #d0e9bc;
+
+  /* some other choice I had > c1d8c3 fff5e4 */
+}
+
+html {
+  color-scheme: light dark;
+  font-synthesis: none;
+  text-rendering: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: var(--font-base-size);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-normal);
+
+  color: var(--global-text-color);
+  background-color: var(--global-bg-color);
+  line-height: 1.5;
+}
+
+p {
+  font-size: var(--font-sm-size);
+  color: var(--global-text-color);
+  opacity: 0.7;
+}
+
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+  font-weight: var(--font-weight-bold);
+}
+
+h3 {
+  font-size: 24px;
+}
+
+span {
+  width: 100%;
+  height: 100%;
+  margin: 16px 0px;
+}
+
+label {
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-base-size);
+  text-align: start;
+  padding: 0 3px;
+  line-height: 2em;
+}
+
+input {
+  outline: none;
+  background-color: transparent;
+  width: 100%;
+  height: 45px;
+  padding: 0 15px;
+  text-align: start;
+  border: 1px solid var(--global-text-color);
+  border-bottom: 5px solid var(--global-text-color);
+  border-radius: 12px;
+  color: var(--global-text-color);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-base-size);
+}

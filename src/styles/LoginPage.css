@@ -1,0 +1,45 @@
+.login_page {
+  max-width: 320px;
+}
+
+.login_page .content p {
+  margin-top: 6px;
+}
+
+.login_page .wrapper .login_form {
+  margin-top: 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 12px;
+}
+
+.login_page .wrapper p {
+  text-align: center;
+}
+
+.google_button {
+  margin-top: 14px;
+  height: 45px;
+  width: 100%;
+  border: 1px solid var(--global-text-color);
+  /* border-bottom: 5px solid var(--global-text-color); */
+  border-radius: 12px;
+  background-color: transparent;
+  cursor: pointer;
+  color: currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-family: var(--font-family-body);
+  font-size: var(--font-sm-size);
+  font-weight: var(--font-weight-normal);
+}
+
+.icon {
+  width: 1.5rem; /* Equivalent to w-4 */
+  height: 1.5rem; /* Equivalent to h-4 */
+  margin-right: 10px; /* Equivalent to me-2 */
+}
