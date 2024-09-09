@@ -23,14 +23,25 @@ function App() {
       .catch((error) => console.log("Can't sign out: ", error));
   };
 
-  const handleLogin = () => {
-    //  handles login function
-    signInWithPopup(auth, googleProvider)
-      .then((result) => {
-        if (result) setUser(result.user);
-      })
-      .catch((error) => console.log("Error signing in: ", error));
+  const handleLogin = async () => {
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      if (result) {
+        setUser(result.user);
+      }
+    } catch (error) {
+      console.log("Error signing in: ", error);
+    }
   };
+
+  // const handleLogin = async () => {
+  //   //  handles login function
+  //   await signInWithPopup(auth, googleProvider)
+  //     .then((result) => {
+  //       if (result) setUser(result.user);
+  //     })
+  //     .catch((error) => console.log("Error signing in: ", error));
+  // };
 
   return (
     <section className='app'>
