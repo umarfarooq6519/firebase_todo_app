@@ -7,17 +7,18 @@ import useAuth from "./auth";
 
 function App() {
   // importing auth functions
-  const { user, handleGoogleLogin, handleEmailLogin, handleLogout } = useAuth();
+  const { user, handleGoogleLogin, handleEmailLogin, handleLogout, error } =
+    useAuth();
 
   return (
     <section className='app'>
       {user ? (
-        <Dashboard handleLogout={handleLogout} user={user} />
+        <Dashboard handleLogout={handleLogout} user={user} error={error} />
       ) : (
         <LoginPage
           handleGoogleLogin={handleGoogleLogin}
           handleEmailLogin={handleEmailLogin}
-          user={user}
+          error={error}
         />
       )}
     </section>

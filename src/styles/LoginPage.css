@@ -6,11 +6,11 @@
   margin-top: 6px;
 }
 
-.login_page .wrapper .login_form {
+.login_page .login_form {
   margin-top: 26px;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   width: 100%;
   gap: 12px;
 }
@@ -20,7 +20,6 @@
 }
 
 .google_button {
-  margin-top: 14px;
   height: 45px;
   width: 100%;
   border: 1px solid var(--global-text-color);

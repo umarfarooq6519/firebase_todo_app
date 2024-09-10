@@ -16,6 +16,7 @@ googleProvider.setCustomParameters({
 
 function useAuth() {
   const [user, setUser] = useState(null);
+  const [error, setError] = useState("");
 
   useEffect(() => {
     console.log(user);
@@ -25,9 +26,12 @@ function useAuth() {
     signOut(auth)
       .then(() => {
         setUser(null);
+        setError("");
         console.log("Signout successfull");
       })
-      .catch((error) => console.log("Can't sign out: ", error));
+      .catch((error) => {
+        setError(`Can't sign out!`);
+      });
   };
 
   const handleEmailLogin = async (name, email, password) => {
@@ -38,6 +42,7 @@ function useAuth() {
         password
       );
       if (result) {
+        setError("");
         // update users display name
         await updateProfile(result.user, {
           displayName: name,
@@ -45,7 +50,19 @@ function useAuth() {
         setUser(result.user);
       }
     } catch (error) {
-      console.log("Error signing in", error);
+      switch (error.code) {
+        case "auth/email-already-in-use":
+          setError("This email address is already in use!");
+          break;
+        case "auth/invalid-email":
+          setError("This email address is invalid!");
+          break;
+
+        default:
+          setError("Unknown error signing in!");
+          break;
+      }
+      console.log("Error signing in: ", error);
     }
   };
 
@@ -60,7 +77,7 @@ function useAuth() {
     }
   };
 
-  return { user, handleGoogleLogin, handleLogout, handleEmailLogin };
+  return { user, handleGoogleLogin, handleLogout, handleEmailLogin, error };
 }
 
 export default useAuth;

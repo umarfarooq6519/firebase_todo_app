@@ -1,9 +1,11 @@
+// TODO: add messages to indicate user of 'already in use email address' & 'invalid email address' errors
+
 import "../styles/LoginPage.css";
 
 import google_icon from "/google_icon.svg";
 import { useState } from "react";
 
-function LoginPage({ handleGoogleLogin, handleEmailLogin, user }) {
+function LoginPage({ handleGoogleLogin, handleEmailLogin, error }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -16,7 +18,6 @@ function LoginPage({ handleGoogleLogin, handleEmailLogin, user }) {
   return (
     <section className='login_page'>
       <div className='content'>
-        {user ? user.email : "Signed out"}
         <h2>Create Account👋</h2>
         <p>
           Please login to continue. The app will use firebase to save your data
@@ -28,7 +29,7 @@ function LoginPage({ handleGoogleLogin, handleEmailLogin, user }) {
         <form onSubmit={handleLogin} className='login_form'>
           <input
             type='text'
-            placeholder='full name'
+            placeholder='your name'
             value={name}
             onChange={(e) => setName(e.target.value)}
             name='user_name'
@@ -53,14 +54,14 @@ function LoginPage({ handleGoogleLogin, handleEmailLogin, user }) {
             required
           />
 
-          <span>
-            <button className='action_button' type='submit'>
-              Continue
-            </button>
-          </span>
+          <p className='error_msg'>{error}</p>
+
+          <button className='action_button' type='submit'>
+            Continue
+          </button>
         </form>
 
-        <p className='with-lines'> Or</p>
+        <p className='divider'> Or</p>
 
         <button
           type='button'
