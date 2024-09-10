@@ -1,9 +1,18 @@
 import "../styles/LoginPage.css";
 
-import ActionButton from "../components/ActionButton";
 import google_icon from "/google_icon.svg";
+import { useState } from "react";
 
-function LoginPage({ handleLogin, user }) {
+function LoginPage({ handleGoogleLogin, handleEmailLogin, user }) {
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [pass, setPass] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    handleEmailLogin(name, email, pass);
+  };
+
   return (
     <section className='login_page'>
       <div className='content'>
@@ -16,25 +25,48 @@ function LoginPage({ handleLogin, user }) {
       </div>
 
       <div className='wrapper'>
-        <form action='' method='POST' className='login_form'>
-          <input type='text' placeholder='full name' name='user_name' />
+        <form onSubmit={handleLogin} className='login_form'>
+          <input
+            type='text'
+            placeholder='full name'
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            name='user_name'
+            required
+          />
 
           <input
             type='text'
             placeholder='example@website.com'
             name='user_email'
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
           />
 
-          <input type='password' placeholder='password' name='user_pass' />
+          <input
+            type='password'
+            placeholder='password'
+            value={pass}
+            onChange={(e) => setPass(e.target.value)}
+            name='user_pass'
+            required
+          />
 
           <span>
-            <ActionButton text='Continue' />
+            <button className='action_button' type='submit'>
+              Continue
+            </button>
           </span>
         </form>
 
         <p className='with-lines'> Or</p>
 
-        <button type='button' onClick={handleLogin} className='google_button'>
+        <button
+          type='button'
+          onClick={handleGoogleLogin}
+          className='google_button'
+        >
           <img src={google_icon} alt='' className='icon' />
           Continue with Google
         </button>
