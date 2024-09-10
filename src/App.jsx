@@ -1,50 +1,13 @@
 import "./styles/App.css";
 
-// ##### firebase imports #####
-import { GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
-import { auth } from "./firebase";
-
 // ##### page imports #####
 import LoginPage from "./pages/LoginPage";
 import Dashboard from "./pages/Dashboard";
-import { useState } from "react";
-
-const googleProvider = new GoogleAuthProvider();
-googleProvider.setCustomParameters({
-  prompt: "select_account",
-});
+import useAuth from "./auth";
 
 function App() {
-  const [user, setUser] = useState(null);
-
-  const handleLogout = () => {
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        console.log("Signout successfull");
-      })
-      .catch((error) => console.log("Can't sign out: ", error));
-  };
-
-  const handleLogin = async () => {
-    try {
-      const result = await signInWithPopup(auth, googleProvider);
-      if (result) {
-        setUser(result.user);
-      }
-    } catch (error) {
-      console.log("Error signing in: ", error);
-    }
-  };
-
-  // const handleLogin = async () => {
-  //   //  handles login function
-  //   await signInWithPopup(auth, googleProvider)
-  //     .then((result) => {
-  //       if (result) setUser(result.user);
-  //     })
-  //     .catch((error) => console.log("Error signing in: ", error));
-  // };
+  // importing auth functions
+  const { user, handleLogin, handleLogout } = useAuth();
 
   return (
     <section className='app'>
