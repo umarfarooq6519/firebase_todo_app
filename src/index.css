@@ -110,6 +110,12 @@ input {
   font-weight: var(--font-weight-normal);
 }
 
+/* Disabled button styles */
+button:disabled {
+  cursor: not-allowed; /* Changes the cursor to indicate it's disabled */
+  opacity: 0.5; /* Optional: Makes the button look faded */
+}
+
 .error_msg {
   color: red;
 }

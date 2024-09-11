@@ -5,7 +5,7 @@ import "../styles/LoginPage.css";
 import google_icon from "/google_icon.svg";
 import { useState } from "react";
 
-function LoginPage({ handleGoogleLogin, handleEmailLogin, error }) {
+function LoginPage({ handleGoogleLogin, handleEmailLogin, error, loading }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
@@ -56,7 +56,12 @@ function LoginPage({ handleGoogleLogin, handleEmailLogin, error }) {
 
           <p className='error_msg'>{error}</p>
 
-          <button className='action_button' type='submit'>
+          <button className='action_button' type='submit' disabled={loading}>
+            {loading ? (
+              <span style={{ position: "relative", left: "-10px" }}>
+                <i className='fa-solid fa-spinner fa-pulse'></i>
+              </span>
+            ) : null}
             Continue
           </button>
         </form>
@@ -67,8 +72,15 @@ function LoginPage({ handleGoogleLogin, handleEmailLogin, error }) {
           type='button'
           onClick={handleGoogleLogin}
           className='google_button'
+          disabled={loading}
         >
-          <img src={google_icon} alt='' className='icon' />
+          {loading ? (
+            <span style={{ position: "relative", left: "-10px" }}>
+              <i className='fa-solid fa-spinner fa-pulse'></i>
+            </span>
+          ) : (
+            <img src={google_icon} alt='' className='icon' />
+          )}
           Continue with Google
         </button>
       </div>

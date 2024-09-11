@@ -17,12 +17,14 @@ googleProvider.setCustomParameters({
 function useAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     console.log(user);
   }, [user]);
 
   const handleLogout = () => {
+    setLoading(true);
     signOut(auth)
       .then(() => {
         setUser(null);
@@ -31,10 +33,12 @@ function useAuth() {
       })
       .catch((error) => {
         setError(`Can't sign out!`);
-      });
+      })
+      .finally(() => setLoading(false));
   };
 
   const handleEmailLogin = async (name, email, password) => {
+    setLoading(true);
     try {
       const result = await createUserWithEmailAndPassword(
         auth,
@@ -63,10 +67,13 @@ function useAuth() {
           break;
       }
       console.log("Error signing in: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
   const handleGoogleLogin = async () => {
+    setLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
       if (result) {
@@ -74,10 +81,19 @@ function useAuth() {
       }
     } catch (error) {
       console.log("Error signing in: ", error);
+    } finally {
+      setLoading(false);
     }
   };
 
-  return { user, handleGoogleLogin, handleLogout, handleEmailLogin, error };
+  return {
+    user,
+    handleGoogleLogin,
+    handleLogout,
+    handleEmailLogin,
+    error,
+    loading,
+  };
 }
 
 export default useAuth;
