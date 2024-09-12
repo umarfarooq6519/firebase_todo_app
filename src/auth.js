@@ -6,6 +6,7 @@ import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
 } from "firebase/auth";
 
 const googleProvider = new GoogleAuthProvider();
@@ -37,7 +38,24 @@ function useAuth() {
       .finally(() => setLoading(false));
   };
 
-  const handleEmailLogin = async (name, email, password) => {
+  const handleEmailSignin = async (email, password) => {
+    setLoading(true);
+    try {
+      const result = await signInWithEmailAndPassword(auth, email, password);
+
+      if (result) {
+        setError("");
+        setUser(result.user);
+      }
+    } catch (error) {
+      // setError("Error in signin");
+      console.log("Error in signin: ", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleEmailSignup = async (name, email, password) => {
     setLoading(true);
     try {
       const result = await createUserWithEmailAndPassword(
@@ -90,7 +108,8 @@ function useAuth() {
     user,
     handleGoogleLogin,
     handleLogout,
-    handleEmailLogin,
+    handleEmailSignup,
+    handleEmailSignin,
     error,
     loading,
   };

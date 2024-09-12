@@ -1,4 +1,9 @@
-function Dashboard({ user, handleLogout }) {
+import { useAuthContext } from "../contexts/AuthContext";
+
+function Dashboard() {
+  // access authContext variables
+  const { user, handleLogout } = useAuthContext();
+
   return (
     <section className='dashboard'>
       <h2>Welcome {user.displayName}</h2>
