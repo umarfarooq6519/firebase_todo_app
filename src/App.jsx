@@ -11,16 +11,24 @@ function App() {
 
   if (loading) {
     // Show a loading indicator while auth status is being determined
-    return <div className='loading'>Loading...</div>;
+    return <div className='loading'>loading...</div>;
   }
 
   if (user) {
     // If user is authenticated, navigate to dashboard
-    return <Dashboard />;
+    return (
+      <section className='app'>
+        <Dashboard />
+      </section>
+    );
   }
 
   // If no user and loading is complete, show the signup page
-  return <SignupPage />;
+  return (
+    <section className='app'>
+      <SignupPage />;
+    </section>
+  );
 }
 
 export default App;

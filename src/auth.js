@@ -21,24 +21,21 @@ function useAuth() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+
+  useEffect(() => {
+    // Handle authentication state changes
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      setLoading(false); // Set loading to false when we get user info
+    });
+
+    // Clean up the subscription on unmount
+    return () => unsubscribe();
+  }, []);
+
   useEffect(() => {
     console.log(user);
   }, [user]);
-
-  useEffect(() => {
-    const handleAuthState = async (currentUser) => {
-      try {
-        setUser(currentUser);
-      } catch (error) {
-        console.log("error fetching user info");
-      } finally {
-      }
-    };
-
-    const unsubscribe = onAuthStateChanged(auth, handleAuthState);
-
-    return () => unsubscribe();
-  }, []);
 
   const handleLogout = () => {
     setLoading(true);
@@ -85,7 +82,7 @@ function useAuth() {
         await updateProfile(result.user, {
           displayName: name,
         });
-        setUser(result.user);
+        setUser({ ...result.user, displayName: name });
       }
     } catch (error) {
       switch (error.code) {
