@@ -6,7 +6,6 @@ import SigninPage from "./SigninPage";
 import EmailPassInput from "../components/EmailPassInput";
 import ContinueButton from "../components/ContinueButton";
 import GoogleButton from "../components/GoogleButton";
-import { Link } from "react-router-dom";
 
 function SignupPage() {
   // using authContext variables

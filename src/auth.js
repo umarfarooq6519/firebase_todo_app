@@ -7,6 +7,7 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
   signInWithEmailAndPassword,
+  onAuthStateChanged,
 } from "firebase/auth";
 
 const googleProvider = new GoogleAuthProvider();
@@ -23,6 +24,21 @@ function useAuth() {
   useEffect(() => {
     console.log(user);
   }, [user]);
+
+  useEffect(() => {
+    const handleAuthState = async (currentUser) => {
+      try {
+        setUser(currentUser);
+      } catch (error) {
+        console.log("error fetching user info");
+      } finally {
+      }
+    };
+
+    const unsubscribe = onAuthStateChanged(auth, handleAuthState);
+
+    return () => unsubscribe();
+  }, []);
 
   const handleLogout = () => {
     setLoading(true);
