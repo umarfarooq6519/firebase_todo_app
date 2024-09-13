@@ -21,9 +21,9 @@ function useAuth() {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
-
   useEffect(() => {
     // Handle authentication state changes
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false); // Set loading to false when we get user info
@@ -61,8 +61,18 @@ function useAuth() {
         setUser(result.user);
       }
     } catch (error) {
-      // setError("Error in signin");
-      console.log("Error in signin: ", error);
+      switch (error.code) {
+        case "auth/invalid-email":
+          setError("The email address is invalid!");
+          break;
+        case "auth/invalid-credential":
+          setError("The credentials could not be found!");
+          break;
+        default:
+          setError("Unknown error signing in!");
+          break;
+      }
+      console.log("Error signing in: ", error);
     } finally {
       setLoading(false);
     }
@@ -86,6 +96,12 @@ function useAuth() {
       }
     } catch (error) {
       switch (error.code) {
+        case "auth/invalid-email":
+          setError("The email address is invalid!");
+          break;
+        case "auth/weak-password":
+          setError("The password should be atleast 6 characters!");
+          break;
         case "auth/email-already-in-use":
           setError("This email address is already in use!");
           break;
@@ -94,7 +110,7 @@ function useAuth() {
           break;
 
         default:
-          setError("Unknown error signing in!");
+          setError("Unknown error creating account!");
           break;
       }
       console.log("Error signing in: ", error);
@@ -119,12 +135,13 @@ function useAuth() {
 
   return {
     user,
+    error,
+    loading,
     handleGoogleLogin,
     handleLogout,
     handleEmailSignup,
     handleEmailSignin,
-    error,
-    loading,
+    setError,
   };
 }
 

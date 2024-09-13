@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/SignupPage.css";
-import SigninPage from "./SigninPage";
 
 import EmailPassInput from "../components/EmailPassInput";
 import ContinueButton from "../components/ContinueButton";
@@ -9,20 +9,29 @@ import GoogleButton from "../components/GoogleButton";
 
 function SignupPage() {
   // using authContext variables
-  const { handleGoogleLogin, handleEmailSignup, error, loading } =
+  const { handleGoogleLogin, handleEmailSignup, error, loading, setError } =
     useAuthContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const handleSignup = (e) => {
+  const handleSignup = async (e) => {
     e.preventDefault();
-    handleEmailSignup(name, email, pass);
+    await handleEmailSignup(name, email, pass);
+
+    setName("");
+    setEmail("");
+    setPass("");
   };
 
+  useEffect(() => {
+    // Clear the error message when the component unmounts
+    setError("");
+  }, []);
+
   return (
-    <section className='signup_page'>
+    <section className='signup_page app'>
       <div className='content'>
         <h2>Create Account👋</h2>
         <p>
@@ -60,8 +69,7 @@ function SignupPage() {
 
         <p className='login_link'>
           Already have an account?
-          <a href='src/pages/SigninPage.jsx'>Sign in</a>
-          {/* <Link to='./signin'>Sign in</Link> */}
+          <Link to='/signin'>Sign in</Link>
         </p>
       </div>
     </section>
