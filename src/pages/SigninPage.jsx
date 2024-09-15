@@ -35,6 +35,10 @@ function SigninPage() {
     setError("");
   }, []);
 
+  if (loading) {
+    return <div className='loading'>Loading...</div>;
+  }
+
   return (
     <>
       {user ? (

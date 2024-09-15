@@ -22,19 +22,19 @@ function useAuth() {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // Handle authentication state changes
-    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      setLoading(false); // Set loading to false when we get user info
+      if (currentUser) {
+        setUser(currentUser);
+      }
     });
 
-    // Clean up the subscription on unmount
     return () => unsubscribe();
   }, []);
 
   useEffect(() => {
-    console.log(user);
+    if (process.env.NODE_ENV === "development") {
+      console.log(user);
+    }
   }, [user]);
 
   const handleLogout = () => {

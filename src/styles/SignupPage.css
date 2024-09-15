@@ -19,24 +19,6 @@
   text-align: center;
 }
 
-.google_button {
-  height: 45px;
-  width: 100%;
-  border: 1px solid var(--global-text-color);
-  /* border-bottom: 5px solid var(--global-text-color); */
-  border-radius: 12px;
-  background-color: transparent;
-  cursor: pointer;
-  color: currentColor;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-family: var(--font-family-body);
-  font-size: var(--font-sm-size);
-  font-weight: var(--font-weight-normal);
-}
-
 .icon {
   width: 1.5rem; /* Equivalent to w-4 */
   height: 1.5rem; /* Equivalent to h-4 */

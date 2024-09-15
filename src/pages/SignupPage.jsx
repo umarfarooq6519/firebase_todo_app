@@ -3,15 +3,21 @@ import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/SignupPage.css";
 
+import Dashboard from "./Dashboard";
 import EmailPassInput from "../components/EmailPassInput";
 import ContinueButton from "../components/ContinueButton";
 import GoogleButton from "../components/GoogleButton";
-import Dashboard from "./Dashboard";
 
 function SignupPage() {
-  // using authContext variables
-  const { handleGoogleLogin, handleEmailSignup, error, loading, setError, user } =
-    useAuthContext();
+  // access authContext variables
+  const {
+    handleGoogleLogin,
+    handleEmailSignup,
+    error,
+    loading,
+    setError,
+    user,
+  } = useAuthContext();
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -30,6 +36,10 @@ function SignupPage() {
     // Clear the error message when the component unmounts
     setError("");
   }, []);
+
+  if (loading) {
+    return <div className='loading'>Loading...</div>;
+  }
 
   return (
     <>
@@ -65,12 +75,12 @@ function SignupPage() {
 
               <p className='error_msg'>{error}</p>
 
-              <ContinueButton loading={loading} />
+              <ContinueButton  />
             </form>
 
             <p className='divider'> Or</p>
 
-            <GoogleButton onClick={handleGoogleLogin} loading={loading} />
+            <GoogleButton onClick={handleGoogleLogin} />
 
             <p className='login_link'>
               Already have an account?
