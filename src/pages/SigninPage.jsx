@@ -10,8 +10,14 @@ import EmailPassInput from "../components/EmailPassInput";
 
 function SigninPage() {
   // access authContext variables
-  const { error, loading, handleGoogleLogin, handleEmailSignin, user, setError } =
-    useAuthContext();
+  const {
+    error,
+    loading,
+    handleGoogleLogin,
+    handleEmailSignin,
+    user,
+    setError,
+  } = useAuthContext();
 
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");

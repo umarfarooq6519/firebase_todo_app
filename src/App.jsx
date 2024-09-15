@@ -1,19 +1,19 @@
-import { useAuthContext } from "./contexts/AuthContext";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import SignupPage from "./pages/SignupPage";
+import SigninPage from "./pages/SigninPage";
 import Dashboard from "./pages/Dashboard";
 
 function App() {
-  // access authContext variables
-  const { user } = useAuthContext();
-
-  if (user) {
-    // If user is authenticated, navigate to dashboard
-    return <Dashboard />;
-  }
-
-  // If no user and loading is complete, show the signup page
-  return <SignupPage />;
+  return (
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<SignupPage />} />
+        <Route path='/signin' element={<SigninPage />} />
+        <Route path='/dashboard' element={<Dashboard />} />
+      </Routes>
+    </BrowserRouter>
+  );
 }
 
 export default App;
