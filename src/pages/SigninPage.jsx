@@ -41,10 +41,11 @@ function SigninPage() {
 
   return (
     <>
+      {/* if user is true, load dashboard, else load sign-in page */}
       {user ? (
         <Dashboard />
       ) : (
-        <section className='signin_page'>
+        <section className='signin_page grid_center'>
           <div className='content'>
             <h2>
               Continue with <br /> existing Account👋
@@ -75,7 +76,7 @@ function SigninPage() {
 
             <p className='login_link'>
               Don't have an account?
-              <Link to='/'>Sign in</Link>
+              <Link to='/'>Sign-up</Link>
             </p>
           </div>
         </section>

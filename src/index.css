@@ -13,15 +13,35 @@
   --font-weight-normal: 450;
   --font-weight-medium: 500;
   --font-weight-semibold: 550;
-  --font-weight-bold: 650;
-  --font-weight-extrabold: 700;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 650;
 
   /* theme color variables */
   --global-bg-color: #eeeeee;
   --global-text-color: #1c1c1c;
   --global-green-color: #d0e9bc;
-
   /* some other choice I had > c1d8c3 fff5e4 */
+
+  /* global border radius */
+  --global-radius-sm: 8px;
+  --global-radius-base: 12px;
+  --global-radius-lg: 16px;
+
+  /* global icon size */
+  --global-icon-sm: 20px;
+  --global-icon-base: 22px;
+  --global-icon-lg: 24px;
+  --global-icon-xl: 28px;
+  --global-icon-2xl: 32px;
+
+  /* global shadows */
+  --global-shadow-sm: 0 0 6px 0 rgba(0, 0, 0, 0.1);
+  --global-shadow-base: 0 0 8px 1px rgba(0, 0, 0, 0.12);
+  --global-shadow-lg: 0 0 10px 2px rgba(0, 0, 0, 0.15);
+
+  /* global containers */
+  --global-container-sm: 260px;
+  --global-container-base: 320px;
 }
 
 html {
@@ -30,6 +50,11 @@ html {
   text-rendering: auto;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  font-size: var(--font-base-size);
+  font-family: var(--font-family-body);
+  font-weight: var(--font-weight-normal);
+  line-height: 1.5;
 }
 
 * {
@@ -39,21 +64,13 @@ html {
 }
 
 body {
-  font-size: var(--font-base-size);
-  font-family: var(--font-family-body);
-  font-weight: var(--font-weight-normal);
-
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
-  line-height: 1.5;
 
-  display: flex;
-  padding: 5px;
-  flex-direction: column;
-  justify-content: center;
+  min-height: 100dvh;
+  min-width: 100%;
+  display: grid;
   align-items: center;
-  min-height: 100vh;
-  border: 1px solid;
 }
 
 p {
@@ -74,11 +91,18 @@ h2 {
 
 h3 {
   font-size: 24px;
+  font-weight: var(--font-weight-semibold);
+}
+
+h4 {
+  font-size: 20px;
+  font-weight: var(--font-weight-semibold);
 }
 
 a {
   /* text-decoration: none; */
-  color: black;
+  color: inherit;
+  font-weight: var(--font-weight-medium);
 }
 
 label {
@@ -93,7 +117,7 @@ input {
   outline: none;
   background-color: transparent;
   width: 100%;
-  height: 45px;
+  height: 50px;
   padding: 0 15px;
   text-align: start;
   border: 1px solid var(--global-text-color);
@@ -105,8 +129,42 @@ input {
   font-size: var(--font-base-size);
 }
 
+button {
+  font-family: var(--font-family-body);
+  line-height: 10px;
+  background-color: inherit;
+  color: currentColor;
+  border: none;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+/* ######## pre-defined flex styles ######### */
+.flex_center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex_between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* .grid_center {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+} */
+
 .divider {
   padding: 16px 0;
+}
+
+.loading {
+  display: grid;
+  justify-content: center;
 }
 
 /* Disabled button styles */

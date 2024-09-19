@@ -1,0 +1,113 @@
+.dashboard {
+  height: 100dvh;
+  min-width: 100%;
+  padding: 14px;
+}
+
+.sidebar {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.sidebar .header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar .header .account {
+  display: inline-flex;
+  align-items: center;
+  text-align: start;
+  gap: 12px;
+}
+
+.sidebar .header .img {
+  width: 48px;
+  height: 100%;
+  border-radius: var(--global-radius-base);
+  box-shadow: var(--global-shadow-sm);
+  /* border: 1px solid currentColor; */
+}
+
+.sidebar .header .close_button .icon {
+  width: var(--global-icon-xl);
+  height: 100%;
+}
+
+.sidebar .chats {
+  height: 100%;
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+
+  /* border: 1px solid; */
+}
+
+.sidebar .chats .chat_icon {
+  margin-top: 2px;
+  height: 100%;
+  width: var(--global-icon-lg);
+  margin-right: 6px;
+}
+
+.sidebar .chats button {
+  margin-top: 3px;
+  padding: 2px 22px;
+  background-color: var(--global-green-color);
+  border-radius: var(--global-radius-sm);
+  border: 1px solid;
+}
+
+.sidebar .chats .new_chat_btn .plus_icon {
+  width: var(--global-icon-base);
+  height: 100%;
+}
+
+/* ########## chatbox div ########### */
+
+.chatbox {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: aquamarine; */
+  height: 100%;
+}
+
+.chatbox .header .icon {
+  width: var(--global-icon-2xl);
+  height: 100%;
+}
+
+.chatbox .chat_input {
+  width: 100%;
+  display: inline-flex;
+  gap: 10px;
+}
+
+.chatbox .chat_input input {
+  width: 100%;
+}
+
+.chatbox .chat_input .send_msg_btn {
+  padding-left: 8px;
+}
+
+/* ############### chat ############## */
+.chatbox .chat {
+  text-align: center;
+}
+
+.chatbox .chat .plus_icon {
+  border: 1px solid;
+  padding: 0 14px;
+  background-color: var(--global-green-color);
+  margin-inline: 2px;
+  border-radius: 6px;
+}

@@ -43,10 +43,11 @@ function SignupPage() {
 
   return (
     <>
+      {/* if user is true, load dashboard, else load sign-up page */}
       {user ? (
         <Dashboard />
       ) : (
-        <section className='signup_page app'>
+        <section className='signup_page grid_center'>
           <div className='content'>
             <h2>Create Account👋</h2>
             <p>
@@ -75,7 +76,7 @@ function SignupPage() {
 
               <p className='error_msg'>{error}</p>
 
-              <ContinueButton  />
+              <ContinueButton />
             </form>
 
             <p className='divider'> Or</p>
@@ -84,7 +85,7 @@ function SignupPage() {
 
             <p className='login_link'>
               Already have an account?
-              <Link to='/signin'>Sign in</Link>
+              <Link to='/signin'>Sign-in</Link>
             </p>
           </div>
         </section>

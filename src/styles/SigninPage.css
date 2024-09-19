@@ -1,5 +1,12 @@
 .signin_page {
-  max-width: 320px;
+  padding: 5px;
+  display: grid;
+  justify-content: center;
+}
+
+.signin_page .content,
+.signin_page-page .wrapper {
+  max-width: var(--global-container-base);
 }
 
 .signin_page .content p {
