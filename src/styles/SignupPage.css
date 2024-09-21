@@ -4,11 +4,6 @@
   justify-content: center;
 }
 
-.signup_page .content,
-.signup-page .wrapper {
-  max-width: var(--global-container-base);
-}
-
 .signup_page .content p {
   margin-top: 6px;
 }

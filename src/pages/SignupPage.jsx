@@ -47,8 +47,8 @@ function SignupPage() {
       {user ? (
         <Dashboard />
       ) : (
-        <section className='signup_page grid_center'>
-          <div className='content'>
+        <section className='signup_page'>
+          <div className='content container'>
             <h2>Create Account👋</h2>
             <p>
               Please signup to continue. The app will use firebase to save your
@@ -56,7 +56,7 @@ function SignupPage() {
             </p>
           </div>
 
-          <div className='wrapper'>
+          <div className='wrapper container'>
             <form onSubmit={handleSignup} className='login_form'>
               <input
                 type='text'

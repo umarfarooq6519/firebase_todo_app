@@ -2,7 +2,6 @@
   height: 45px;
   width: 100%;
   border: 1px solid var(--global-text-color);
-  /* border-bottom: 5px solid var(--global-text-color); */
   border-radius: 12px;
   background-color: var(--global-green-color);
   cursor: pointer;

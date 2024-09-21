@@ -45,8 +45,8 @@ function SigninPage() {
       {user ? (
         <Dashboard />
       ) : (
-        <section className='signin_page grid_center'>
-          <div className='content'>
+        <section className='signin_page'>
+          <div className='content container'>
             <h2>
               Continue with <br /> existing Account👋
             </h2>
@@ -56,7 +56,7 @@ function SigninPage() {
             </p>
           </div>
 
-          <div className='wrapper'>
+          <div className='wrapper container'>
             <form onSubmit={handleSignin} className='login_form'>
               <EmailPassInput
                 email={email}

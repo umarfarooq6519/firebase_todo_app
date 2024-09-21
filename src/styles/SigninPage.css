@@ -4,11 +4,6 @@
   justify-content: center;
 }
 
-.signin_page .content,
-.signin_page-page .wrapper {
-  max-width: var(--global-container-base);
-}
-
 .signin_page .content p {
   margin-top: 6px;
 }
