@@ -10,13 +10,32 @@
   margin-bottom: 10px;
 }
 
+.dashboard .account .avatar {
+  border: 1px solid currentColor;
+}
+
 .dashboard .wrapper .account {
-  font-weight: var(--font-weight-medium);
-  width: fit-content;
+  font-weight: var(--font-weight-semibold);
+  width: 100%;
   gap: 10px;
+}
+
+.dashboard .wrapper .account .acc_info .email {
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-sm-size);
+}
+
+.dashboard .wrapper .menu {
+  border: 1px solid;
+}
+
+.dashboard .wrapper .icon {
+  /* border: 1px solid; */
+  width: var(--global-icon-2xl);
+  height: 100%;
 }
 
 .dashboard .content .signout_btn {
   border: 1px solid;
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-medium);
 }

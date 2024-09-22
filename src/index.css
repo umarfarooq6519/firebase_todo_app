@@ -3,14 +3,13 @@
   --font-family-body: General Sans, sans-serif;
 
   /* ##### font size variables ##### */
-  --font-xs-size: 13px;
-  --font-sm-size: 15px;
+  --font-sm-size: 14px;
   --font-base-size: 16px;
   --font-lg-size: 18px;
 
   /* ##### font weight variables ##### */
-  --font-weight-light: 350;
-  --font-weight-normal: 400;
+  --font-weight-light: 400;
+  --font-weight-normal: 450;
   --font-weight-medium: 500;
   --font-weight-semibold: 550;
   --font-weight-bold: 600;
@@ -152,11 +151,26 @@ button {
   justify-content: center;
 }
 
+.flex_start {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
 .flex_between {
   width: 100%;
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+.flex_col_start {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
 }
 
 .divider {
@@ -192,5 +206,5 @@ button:disabled {
   text-decoration: none;
   font-family: var(--font-family-body);
   font-size: var(--font-sm-size);
-  font-weight: var(--font-weight-normal);
+  font-weight: var(--font-weight-medium);
 }
