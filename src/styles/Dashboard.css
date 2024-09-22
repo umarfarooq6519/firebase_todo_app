@@ -37,5 +37,12 @@
 
 .dashboard .content .signout_btn {
   border: 1px solid;
-  font-weight: var(--font-weight-medium);
+  border-radius: var(--global-radius-base);
+  color: currentColor;
+}
+
+.dashboard .content .signout_btn .icon {
+  margin-right: 6px;
+  height: 100%;
+  width: var(--global-icon-base);
 }

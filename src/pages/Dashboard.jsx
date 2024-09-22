@@ -5,6 +5,7 @@ import { Avatar } from "@mui/joy";
 import { Button, Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy";
 
 import menu_icon from "/menu_icon.svg";
+import signout_icon from "/signout_icon.svg";
 
 function Dashboard() {
   // access authContext variables
@@ -49,6 +50,7 @@ function Dashboard() {
           onClick={signoutHandle}
           className='fancy_button signout_btn'
         >
+          <img src={signout_icon} alt='' className='icon' />
           Sign Out
         </Button>
       </div>

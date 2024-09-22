@@ -8,6 +8,11 @@
   margin-top: 6px;
 }
 
+.signin_page .wrapper .error_msg .icon {
+  height: 100%;
+  width: var(--global-icon-base);
+}
+
 .signin_page .login_form {
   margin-top: 26px;
   display: flex;
@@ -19,12 +24,6 @@
 
 .signin_page .wrapper .divider {
   text-align: center;
-}
-
-.icon {
-  width: 1.5rem; /* Equivalent to w-4 */
-  height: 1.5rem; /* Equivalent to h-4 */
-  margin-right: 10px; /* Equivalent to me-2 */
 }
 
 .login_link {

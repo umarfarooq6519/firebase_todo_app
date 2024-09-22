@@ -7,6 +7,7 @@ import Dashboard from "./Dashboard";
 import ContinueButton from "../components/ContinueButton";
 import GoogleButton from "../components/GoogleButton";
 import EmailPassInput from "../components/EmailPassInput";
+import warning_icon from "/warning_icon.svg";
 
 function SigninPage() {
   // access authContext variables
@@ -65,7 +66,12 @@ function SigninPage() {
                 setPass={setPass}
               />
 
-              <p className='error_msg'>{error}</p>
+              <p className='error_msg flex_start'>
+                {error ? (
+                  <img src={warning_icon} alt='' className='icon' />
+                ) : null}
+                {error}
+              </p>
 
               <ContinueButton loading={loading} />
             </form>
