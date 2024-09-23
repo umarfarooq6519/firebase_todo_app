@@ -5,9 +5,10 @@ import "../styles/SignupPage.css";
 
 import Dashboard from "./Dashboard";
 import EmailPassInput from "../components/EmailPassInput";
-import ContinueButton from "../components/ContinueButton";
-import GoogleButton from "../components/GoogleButton";
+import PrimaryBtn from "../components/PrimaryBtn";
+import GoogleBtn from "../components/GoogleBtn";
 import warning_icon from "/warning_icon.svg";
+import signin_icon from "/signin_icon.svg";
 
 function SignupPage() {
   // access authContext variables
@@ -52,7 +53,7 @@ function SignupPage() {
           <div className='content container'>
             <h2>Create Account👋</h2>
             <p>
-              Please signup to continue. The app will use firebase to save your
+              Please sign-up to continue. The app will use firebase to save your
               data on cloud.
             </p>
           </div>
@@ -82,12 +83,15 @@ function SignupPage() {
                 {error}
               </p>
 
-              <ContinueButton className='continue_btn' />
+              <PrimaryBtn
+                text='Continue'
+                icon={<img src={signin_icon} className='icon'></img>}
+              />
             </form>
 
             <p className='divider'> Or</p>
 
-            <GoogleButton onClick={handleGoogleLogin} />
+            <GoogleBtn onClick={handleGoogleLogin} />
 
             <p className='login_link'>
               Already have an account?

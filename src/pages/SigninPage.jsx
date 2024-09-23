@@ -4,10 +4,11 @@ import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/SigninPage.css";
 
 import Dashboard from "./Dashboard";
-import ContinueButton from "../components/ContinueButton";
-import GoogleButton from "../components/GoogleButton";
 import EmailPassInput from "../components/EmailPassInput";
+import PrimaryBtn from "../components/PrimaryBtn";
+import GoogleBtn from "../components/GoogleBtn";
 import warning_icon from "/warning_icon.svg";
+import signin_icon from "/signin_icon.svg";
 
 function SigninPage() {
   // access authContext variables
@@ -52,8 +53,8 @@ function SigninPage() {
               Continue with <br /> existing Account👋
             </h2>
             <p>
-              Please signin to continue. The app will use firebase to fetch your
-              date from the cloud.
+              Please sign-in to continue. The app will use firebase to fetch your
+              data from the cloud.
             </p>
           </div>
 
@@ -73,12 +74,15 @@ function SigninPage() {
                 {error}
               </p>
 
-              <ContinueButton loading={loading} />
+              <PrimaryBtn
+                text='Continue'
+                icon={<img src={signin_icon} className='icon'></img>}
+              />
             </form>
 
             <p className='divider'> Or</p>
 
-            <GoogleButton onClick={handleGoogleLogin} loading={loading} />
+            <GoogleBtn onClick={handleGoogleLogin} loading={loading} />
 
             <p className='login_link'>
               Don't have an account?

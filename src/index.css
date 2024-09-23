@@ -6,6 +6,7 @@
   --font-sm-size: 14px;
   --font-base-size: 16px;
   --font-lg-size: 18px;
+  --font-xl-size: 22px;
 
   /* ##### font weight variables ##### */
   --font-weight-light: 400;
@@ -16,9 +17,11 @@
   --font-weight-extrabold: 650;
 
   /* theme color variables */
-  --global-bg-color: #eeeeee;
-  --global-text-color: #1c1c1c;
-  --global-green-color: #d0e9bc;
+  --global-bg-color: #ffffff;
+  --global-text-color: #222222;
+  --global-accent-color: #d0e9bc;
+  /* for mui/joy styling */
+  --global-accent-color-rgb: 208, 233, 188;
   /* some other choice I had > c1d8c3 fff5e4 */
 
   /* global border radius */
@@ -72,6 +75,7 @@ body {
   align-items: center;
 }
 
+/* ################ Base Components ################ */
 p {
   font-size: var(--font-sm-size);
   color: var(--global-text-color);
@@ -80,11 +84,13 @@ p {
 
 h1 {
   font-size: 32px;
+  line-height: 30px;
+  font-weight: var(--font-weight-bold);
 }
 
 h2 {
   font-size: 28px;
-  line-height: 32px;
+  line-height: 28px;
   font-weight: var(--font-weight-bold);
 }
 
@@ -99,9 +105,8 @@ h4 {
 }
 
 a {
-  /* text-decoration: none; */
-  color: inherit;
-  font-weight: var(--font-weight-medium);
+  color: currentColor;
+  font-weight: var(--font-weight-normal);
 }
 
 label {
@@ -113,30 +118,54 @@ label {
 }
 
 input {
-  outline: none;
-  background-color: transparent;
   width: 100%;
   height: 45px;
   padding: 0 15px;
   text-align: start;
-  border: 1px solid var(--global-text-color);
-  border-bottom: 5px solid var(--global-text-color);
-  border-radius: 12px;
   color: var(--global-text-color);
   font-weight: var(--font-weight-normal);
   font-size: var(--font-base-size);
+  border: 1px solid currentColor;
+  border-bottom: 5px solid currentColor;
+  border-radius: 12px;
+  outline: none;
+  background-color: transparent;
 }
 
+/* ################ Buttons ################  */
 button {
+  height: 45px;
+  width: 100%;
+  border-radius: 12px !important;
+  font-family: var(--font-family-body) !important;
   font-weight: var(--font-weight-normal) !important;
+  font-size: var(--font-sm-size);
+  border: 1px solid var(--global-text-color) !important;
   line-height: 10px;
   background-color: inherit;
-  color: currentColor;
-  border: none;
+  color: currentColor !important;
   text-decoration: none;
   cursor: pointer;
 }
+.primary_btn .text,
+.secondary_btn .text,
+.google_btn .text {
+  font-size: var(--font-sm-size);
+  padding-right: 8px;
+}
+.primary_btn .icon,
+.secondary_btn .icon {
+  width: var(--global-icon-base);
+  height: 100%;
+  margin-right: 4px;
+}
+.google_btn .icon {
+  width: var(--global-icon-sm);
+  height: 100%;
+  margin-right: 6px;
+}
 
+/* ################ Container ################ */
 .container {
   min-width: 100%;
   width: var(--global-container-sm);

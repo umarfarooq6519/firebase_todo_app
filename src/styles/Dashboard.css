@@ -4,45 +4,29 @@
   justify-content: center;
 }
 
+/* ############# dashboard wrapper ############# */
 .dashboard .wrapper {
-  border-bottom: 1px solid currentColor;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+  border-bottom: 1px solid lightgray;
+  padding-bottom: 12px;
+  margin-bottom: 12px;
 }
-
-.dashboard .account .avatar {
-  border: 1px solid currentColor;
-}
-
 .dashboard .wrapper .account {
   font-weight: var(--font-weight-semibold);
   width: 100%;
-  gap: 10px;
+  gap: 6px;
 }
-
-.dashboard .wrapper .account .acc_info .email {
+.dashboard .wrapper .account .greetings {
   font-weight: var(--font-weight-light);
   font-size: var(--font-sm-size);
 }
-
-.dashboard .wrapper .menu {
-  border: 1px solid;
+.dashboard .wrapper .account .avatar {
+  border: 1px solid currentColor;
 }
-
 .dashboard .wrapper .icon {
   /* border: 1px solid; */
-  width: var(--global-icon-2xl);
+  width: var(--global-icon-xl);
   height: 100%;
 }
 
-.dashboard .content .signout_btn {
-  border: 1px solid;
-  border-radius: var(--global-radius-base);
-  color: currentColor;
-}
+/* ############# dashboard content ############# */
 
-.dashboard .content .signout_btn .icon {
-  margin-right: 6px;
-  height: 100%;
-  width: var(--global-icon-base);
-}

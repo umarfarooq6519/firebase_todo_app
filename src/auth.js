@@ -105,10 +105,6 @@ function useAuth() {
         case "auth/email-already-in-use":
           setError("This email address is already in use!");
           break;
-        case "auth/invalid-email":
-          setError("This email address is invalid!");
-          break;
-
         default:
           setError("Unknown error creating account!");
           break;
@@ -127,7 +123,8 @@ function useAuth() {
         setUser(result.user);
       }
     } catch (error) {
-      console.log("Error signing in: ", error);
+      console.log(error);
+      setError("An error occured, please try again!");
     } finally {
       setLoading(false);
     }
