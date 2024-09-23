@@ -6,7 +6,7 @@ const UserAvatar = ({ user }) => {
   return (
     <>
       {user.photoURL ? (
-        <Avatar className='avatar' src={user.photoURL} />
+        <Avatar variant='soft' className='avatar' src={user.photoURL} />
       ) : (
         <Avatar variant='soft' className='avatar' color='danger'>
           {userInitial}

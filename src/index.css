@@ -97,11 +97,19 @@ h2 {
 h3 {
   font-size: 24px;
   font-weight: var(--font-weight-semibold);
+  line-height: 24px;
 }
 
 h4 {
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
+  line-height: 22px;
+}
+
+h5 {
+  font-size: 16px;
+  font-weight: var(--font-weight-semibold);
+  line-height: 20px;
 }
 
 a {

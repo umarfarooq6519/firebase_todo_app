@@ -24,10 +24,10 @@ function Dashboard() {
           <UserAvatar user={user} />
 
           <div className='acc_info flex_col_start'>
-            <span className='name'>
-              Hi, {f_name}
+            <h5 className='name'>
+              Hey there, {f_name}
               <span style={{ fontSize: "18px" }}>👋</span>{" "}
-            </span>
+            </h5>
             <span className='greetings'>What's on your mind today?</span>
           </div>
         </div>
