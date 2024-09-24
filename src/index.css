@@ -141,7 +141,9 @@ input {
 }
 
 /* ################ Buttons ################  */
-button {
+.primary_btn,
+.secondary_btn,
+.google_btn {
   height: 45px;
   width: 100%;
   border-radius: 12px !important;

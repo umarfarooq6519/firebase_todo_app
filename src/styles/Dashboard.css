@@ -23,9 +23,23 @@
   border: 1px solid currentColor;
 }
 .dashboard .wrapper .icon {
-  /* border: 1px solid; */
   width: var(--global-icon-xl);
   height: 100%;
+}
+
+.menu-item {
+  border: none;
+  padding: 0 10px;
+  cursor: pointer;
+  color: var(--global-text-color);
+  background: transparent;
+  display: inline-flex;
+  align-items: center;
+  font-weight: var(--font-weight-normal);
+}
+.menu-item .icon {
+  margin-right: 6px;
+  margin-top: 2px;
 }
 
 /* ############# dashboard content ############# */
