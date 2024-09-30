@@ -3,12 +3,14 @@
   --font-family-body: General Sans, sans-serif;
 
   /* ##### font size variables ##### */
+  --font-xs-size: 13px;
   --font-sm-size: 14px;
   --font-base-size: 16px;
   --font-lg-size: 18px;
   --font-xl-size: 22px;
 
   /* ##### font weight variables ##### */
+  --font-weight-extralight: 350;
   --font-weight-light: 400;
   --font-weight-normal: 450;
   --font-weight-medium: 500;
@@ -140,6 +142,89 @@ input {
   background-color: transparent;
 }
 
+/* ################ Container ################ */
+.container {
+  min-width: 100%;
+  width: var(--global-container-sm);
+}
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 100%;
+    width: var(--global-container-base);
+  }
+}
+
+/* ######## Flex Styles ######### */
+.flex_center {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex_start {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: start;
+}
+
+.flex_between {
+  /* width: 100%; */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex_col_start {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: start;
+}
+
+.icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  /* margin-right: 8px; */
+}
+
+.divider {
+  padding: 16px 0;
+}
+
+.loading {
+  gap: 8px;
+}
+
+/* Disabled button styles */
+button:disabled {
+  cursor: not-allowed; /* Changes the cursor to indicate it's disabled */
+  opacity: 0.5; /* Optional: Makes the button look faded */
+}
+
+.error_msg {
+  color: red;
+  gap: 4px;
+}
+
+.fancy_button {
+  height: 45px;
+  width: 100%;
+  border: 1px solid var(--global-text-color);
+  border-radius: 12px;
+  background-color: transparent;
+  cursor: pointer;
+  color: currentColor;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  font-size: var(--font-sm-size);
+  font-weight: var(--font-weight-medium);
+}
+
 /* ################ Buttons ################  */
 .primary_btn,
 .secondary_btn,
@@ -175,86 +260,45 @@ input {
   margin-right: 6px;
 }
 
-/* ################ Container ################ */
-.container {
-  min-width: 100%;
-  width: var(--global-container-sm);
-}
-
-@media screen and (min-width: 768px) {
-  .container {
-    min-width: 100%;
-    width: var(--global-container-base);
-  }
-}
-
-/* ######## pre-defined flex styles ######### */
-.flex_center {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.flex_start {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: start;
-}
-
-.flex_between {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.flex_col_start {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: start;
-  justify-content: start;
-}
-
-.icon {
-  width: 1.5rem;
-  height: 1.5rem;
-  margin-right: 8px;
-}
-
-.divider {
-  padding: 16px 0;
-}
-
-.loading {
-  display: grid;
-  justify-content: center;
-}
-
-/* Disabled button styles */
-button:disabled {
-  cursor: not-allowed; /* Changes the cursor to indicate it's disabled */
-  opacity: 0.5; /* Optional: Makes the button look faded */
-}
-
-.error_msg {
-  color: red;
-}
-
-.fancy_button {
-  height: 45px;
-  width: 100%;
-  border: 1px solid var(--global-text-color);
-  border-radius: 12px;
-  background-color: transparent;
-  cursor: pointer;
-  color: currentColor;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+/* ################ Todo List ################ */
+.todo_list {
   text-decoration: none;
-  font-size: var(--font-sm-size);
-  font-weight: var(--font-weight-medium);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 10px;
+}
+
+.todo_list .item {
+  width: 100%;
+  height: 45px;
+  padding: 0 10px;
+  text-align: start;
+  color: var(--global-text-color);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-base-size);
+  border: 1px solid currentColor;
+  border-bottom: 5px solid currentColor;
+  border-radius: 12px;
+  outline: none;
+  background-color: transparent;
+}
+.todo_list .item .text {
+  /* for scrolling tasks */
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  white-space: nowrap;
+  margin-right: 4px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.todo_list .item .text::-webkit-scrollbar {
+  display: none; /* Chrome, Safari, and Opera */
+}
+/* .todo_list .icon {
+  margin-left: 4px;
+} */
+.todo_form {
+  margin-top: 20px;
 }

@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
+import { CircularProgress } from "@mui/joy";
 import "../styles/SigninPage.css";
 
 import Dashboard from "./Dashboard";
@@ -38,7 +39,11 @@ function SigninPage() {
   }, []);
 
   if (loading) {
-    return <div className='loading'>Loading...</div>;
+    return (
+      <div className='loading flex_center'>
+        <CircularProgress color='neutral' size='sm' variant='soft' />
+      </div>
+    );
   }
 
   return (
@@ -53,8 +58,8 @@ function SigninPage() {
               Continue with <br /> existing Account👋
             </h2>
             <p>
-              Please sign-in to continue. The app will use firebase to fetch your
-              data from the cloud.
+              Please sign-in to continue. The app will use firebase to fetch
+              your data from the cloud.
             </p>
           </div>
 

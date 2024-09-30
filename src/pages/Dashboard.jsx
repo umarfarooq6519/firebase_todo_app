@@ -7,6 +7,7 @@ import UserAvatar from "../components/UserAvatar";
 
 import menu_icon from "/menu_icon.svg";
 import signout_icon from "/signout_icon.svg";
+import TodoList from "../components/TodoList";
 
 function Dashboard() {
   // access authContext variables
@@ -17,6 +18,41 @@ function Dashboard() {
   const handleSignout = () => {
     handleLogout();
   };
+
+  const AccountMenu = (
+    <Dropdown>
+      <MenuButton
+        variant='plain'
+        color='plain'
+        sx={{
+          padding: "0",
+        }}
+      >
+        <img src={menu_icon} alt='=' className='icon' />
+      </MenuButton>
+      <Menu
+        variant='plain'
+        size='md'
+        sx={{
+          padding: "0",
+        }}
+      >
+        <MenuItem variant='plain' color='plain'>
+          <span className='menu_item'>
+            <p className='email'>{user.email}</p>
+          </span>
+        </MenuItem>
+        <MenuItem variant='soft' color='danger'>
+          <button className='menu_item' type='button' onClick={handleSignout}>
+            <img src={signout_icon} alt='' className='icon' />
+            Sign Out
+          </button>
+        </MenuItem>
+      </Menu>
+    </Dropdown>
+  );
+
+  // ########### Dashboard ###########
 
   return (
     <section className='dashboard '>
@@ -33,48 +69,12 @@ function Dashboard() {
           </div>
         </div>
 
-        <span className='dropdown'>
-          <Dropdown>
-            <MenuButton variant='plain' color='plain'>
-              <img src={menu_icon} alt='=' className='icon' />
-            </MenuButton>
-            <Menu
-              variant='plain'
-              size='lg'
-              sx={{
-                padding: "0px",
-              }}
-            >
-              <MenuItem
-                variant='soft'
-                color='danger'
-                sx={{
-                  padding: "0px",
-                }}
-              >
-                <button
-                  className='menu-item'
-                  type='button'
-                  onClick={handleSignout}
-                >
-                  <img src={signout_icon} alt='' className='icon' />
-                  Sign Out
-                </button>
-              </MenuItem>
-            </Menu>
-          </Dropdown>
-        </span>
-
-        {/* <img src={menu_icon} alt='=' className='icon' /> */}
+        <span className='dropdown'>{AccountMenu}</span>
       </div>
 
-      {/* <div className='content container'>
-        <SecondaryBtn
-          onClick={handleSignout}
-          text='Sign Out'
-          icon={<img src={signout_icon} alt='' className='icon' />}
-        />
-      </div> */}
+      <div className='content container'>
+        <TodoList />
+      </div>
     </section>
   );
 }

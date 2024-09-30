@@ -1,4 +1,4 @@
-export default function EmailPassInput({ email, setEmail, pass, setPass }) {
+const EmailPassInput = ({ email, setEmail, pass, setPass }) => {
   return (
     <>
       <input
@@ -20,4 +20,6 @@ export default function EmailPassInput({ email, setEmail, pass, setPass }) {
       />
     </>
   );
-}
+};
+
+export default EmailPassInput;
