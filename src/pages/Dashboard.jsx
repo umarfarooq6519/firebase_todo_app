@@ -2,12 +2,19 @@ import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/Dashboard.css";
 
 import SecondaryBtn from "../components/SecondaryBtn";
-import { Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy";
+import {
+  Dropdown,
+  MenuButton,
+  Menu,
+  MenuItem,
+  CircularProgress,
+} from "@mui/joy";
 import UserAvatar from "../components/UserAvatar";
 
 import menu_icon from "/menu_icon.svg";
 import signout_icon from "/signout_icon.svg";
 import TodoList from "../components/TodoList";
+import FancyBox from "../components/FancyBox";
 
 function Dashboard() {
   // access authContext variables
@@ -73,7 +80,9 @@ function Dashboard() {
       </div>
 
       <div className='content container'>
-        <TodoList />
+        {/* <TodoList /> */}
+        <FancyBox text='Ongoing Tasks' />
+        <FancyBox text='Completed Tasks' />
       </div>
     </section>
   );

@@ -49,7 +49,7 @@ const TodoList = () => {
         <li className='item flex_between'>
           <Checkbox
             sx={{ marginRight: "6px" }}
-            color='success'
+            color='neutral'
             label=''
             size='sm'
             variant='outlined'

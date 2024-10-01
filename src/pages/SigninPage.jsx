@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
-import { CircularProgress } from "@mui/joy";
 import "../styles/SigninPage.css";
+import { CircularProgress } from "@mui/joy";
 
 import Dashboard from "./Dashboard";
 import EmailPassInput from "../components/EmailPassInput";

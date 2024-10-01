@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/SignupPage.css";
+import { CircularProgress } from "@mui/joy";
 
 import Dashboard from "./Dashboard";
 import EmailPassInput from "../components/EmailPassInput";
@@ -40,7 +41,11 @@ function SignupPage() {
   }, []);
 
   if (loading) {
-    return <div className='loading'>Loading...</div>;
+    return (
+      <div className='loading flex_center'>
+        <CircularProgress color='neutral' size='sm' variant='soft' />
+      </div>
+    );
   }
 
   return (
