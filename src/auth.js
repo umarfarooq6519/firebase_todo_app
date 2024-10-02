@@ -19,13 +19,12 @@ googleProvider.setCustomParameters({
 function useAuth() {
   const [user, setUser] = useState(null);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (currentUser) {
-        setUser(currentUser);
-      }
+      setUser(currentUser);
+      setLoading(false);
     });
 
     return () => unsubscribe();
@@ -133,12 +132,12 @@ function useAuth() {
   return {
     user,
     error,
+    setError,
     loading,
     handleGoogleLogin,
     handleLogout,
     handleEmailSignup,
     handleEmailSignin,
-    setError,
   };
 }
 

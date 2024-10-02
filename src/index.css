@@ -21,9 +21,10 @@
   /* theme color variables */
   --global-bg-color: #ffffff;
   --global-text-color: #222222;
-  --global-accent-color: #d0e9bc;
-  /* for mui/joy styling */
-  --global-accent-color-rgb: 208, 233, 188;
+  --global-accent-green: #d0e9bc;
+  --global-accent-green-rgb: 208, 233, 188;
+  --global-accent-red: #ff8a8a;
+  --global-accent-purple: #e5d9f2;
   /* some other choice I had > c1d8c3 fff5e4 */
 
   /* global border radius */
@@ -32,6 +33,7 @@
   --global-radius-lg: 16px;
 
   /* global icon size */
+  --global-icon-xs: 18px;
   --global-icon-sm: 20px;
   --global-icon-base: 22px;
   --global-icon-lg: 24px;
@@ -105,7 +107,7 @@ h3 {
 h4 {
   font-size: 20px;
   font-weight: var(--font-weight-semibold);
-  line-height: 22px;
+  line-height: 21px;
 }
 
 h5 {
@@ -266,6 +268,40 @@ button:disabled {
   margin-right: 6px;
 }
 
+/* ################ Dashboard Header Component ################ */
+.dashboard_header .account {
+  width: 100%;
+  gap: 8px;
+  font-weight: var(--font-weight-semibold);
+}
+.dashboard_header .account .greetings {
+  font-weight: var(--font-weight-light);
+  font-size: var(--font-xs-size);
+}
+.dashboard_header .account .avatar {
+  border: 1px solid currentColor;
+}
+.dashboard_header .icon {
+  width: var(--global-icon-xl);
+  height: 100%;
+}
+/* ################ Dashboard Menu Item ################ */
+.menu_item {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  padding: 0 10px;
+  cursor: pointer;
+  color: var(--global-text-color);
+  background: transparent;
+  font-weight: var(--font-weight-normal);
+}
+.menu_item .icon {
+  margin-right: 6px;
+  margin-top: 2px;
+}
 /* ################ Todo List ################ */
 .todo_list {
   text-decoration: none;
@@ -277,8 +313,9 @@ button:disabled {
 
 .todo_list .item {
   width: 100%;
-  height: 45px;
-  padding: 0 10px;
+  height: fit-content;
+  line-height: 1.2;
+  padding: 8px;
   text-align: start;
   color: var(--global-text-color);
   font-weight: var(--font-weight-normal);
@@ -291,13 +328,16 @@ button:disabled {
 }
 .todo_list .item .text {
   /* for scrolling tasks */
-  width: 100%;
-  overflow-y: hidden;
+  /* width: 100%; */
+  /* overflow-y: hidden;
   overflow-x: scroll;
   white-space: nowrap;
   margin-right: 4px;
   scrollbar-width: none;
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; */
+}
+.todo_list .time {
+  font-size: var(--font-xs-size);
 }
 .todo_list .item .text::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
@@ -311,20 +351,26 @@ button:disabled {
 
 /* ############ Fancy Box ############# */
 .fancy_box {
-  width: 100%;
-  padding: 10px;
-  border-radius: var(--global-radius-base);
+  max-width: 100%;
   height: 150px;
+  padding: 8px;
+  border-radius: var(--global-radius-base);
   cursor: pointer;
   /* or ongoing tasks */
   border: 1px solid var(--global-text-color);
-  background: var(--global-accent-color);
+  background: var(--global-accent-green);
+}
+.fancy_box h4 {
+  font-weight: var(--font-weight-medium);
+}
+.fancy_box .heading .icon {
+  width: var(--global-icon-sm);
 }
 /* completed tasks box */
 .fancy_box:nth-child(2) {
   background: var(--global-text-color);
   color: var(--global-bg-color);
-  border: 1px solid var(--global-accent-color);
+  border: 1px solid var(--global-accent-green);
 }
 .fancy_box:nth-child(2) p {
   color: var(--global-bg-color);
@@ -333,24 +379,47 @@ button:disabled {
   /* dark theme arrow for completed tasks box */
   content: url("../public/arrow_right_dark.svg");
 }
+.fancy_box:nth-child(2) .tasks {
+  text-decoration: line-through;
+}
 .fancy_box .tasks {
-  margin-top: 6px;
+  margin-top: 4px;
   list-style: none;
   line-height: 1.4;
 }
-.fancy_box:nth-child(2) .tasks {
-  text-decoration: line-through;
+.fancy_box .tasks p {
+  /* to prevent overflowing */
+  max-width: 135px;
+  font-size: var(--font-xs-size);
+  font-weight: var(--font-weight-light);
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
+/* My Notes Box */
+.fancy_box:nth-child(3) {
+  background-color: var(--global-accent-purple);
+  height: fit-content;
+  width: 100%;
+  gap: 3px;
+}
+/* New Task Box */
+.fancy_box:nth-child(4) {
+  background: var(--global-bg-color);
+  height: fit-content;
+  width: 100%;
+  gap: 3px;
+}
+.fancy_box:nth-child(3) .arrow,
+.fancy_box:nth-child(4) .arrow {
+  width: fit-content !important;
 }
 .fancy_box .icon {
   width: var(--global-icon-sm);
 }
 .fancy_box .arrow {
-  opacity: 1;
   width: 100% !important;
   display: flex;
-  align-items: center;
   justify-content: end;
-  gap: 4px;
-  width: 20px;
   height: 20px;
 }

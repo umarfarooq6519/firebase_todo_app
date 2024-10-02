@@ -55,7 +55,9 @@ const TodoList = () => {
             variant='outlined'
           />
           <span className='text'>
-            Swipe to see the full task, as it has overflow enabled!
+            Swipe to see the full task, as it has overflow enabled! Lorem ipsum
+            dolor sit.
+            <p className='time'>12:36pm</p>
           </span>
           {ItemMenu}
         </li>

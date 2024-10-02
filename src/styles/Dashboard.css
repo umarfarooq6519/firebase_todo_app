@@ -4,48 +4,8 @@
   justify-content: center;
 }
 
-/* ############# dashboard wrapper ############# */
-.dashboard .wrapper {
-  border-bottom: 1px solid lightgray;
-  padding-bottom: 12px;
-  margin-bottom: 12px;
-}
-.dashboard .wrapper .account {
-  width: 100%;
-  gap: 10px;
-  font-weight: var(--font-weight-semibold);
-  line-height: 1.4;
-}
-.dashboard .wrapper .account .greetings {
-  font-weight: var(--font-weight-light);
-  font-size: var(--font-xs-size);
-}
-.dashboard .wrapper .account .avatar {
-  border: 1px solid currentColor;
-}
-.dashboard .wrapper .icon {
-  width: var(--global-icon-xl);
-  height: 100%;
-}
-.menu_item {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  padding: 0 10px;
-  cursor: pointer;
-  color: var(--global-text-color);
-  background: transparent;
-  font-weight: var(--font-weight-normal);
-}
-.menu_item .icon {
-  margin-right: 6px;
-  margin-top: 2px;
-}
-
 /* ############# dashboard content ############# */
-.dashboard .content {
+.dashboard .content .main_menu {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;

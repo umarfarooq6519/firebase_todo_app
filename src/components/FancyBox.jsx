@@ -1,20 +1,23 @@
-import { CircularProgress } from "@mui/joy";
-
 import arrow_right_light from "/arrow_right_light.svg";
 
-const FancyBox = ({ text }) => {
+const FancyBox = ({ text, handleClick }) => {
+  const text1 = text.split(" ")[0];
+  const text2 = text.split(" ")[1];
+
   return (
-    <div onClick={() => alert("done")} className='fancy_box flex_col_between'>
-      <h4>{text}</h4>
+    <div onClick={handleClick} className='fancy_box flex_col_between'>
+      <h4>
+        {text1} <br /> {text2}
+      </h4>
       <ul className='tasks'>
         <li>
-          <p>This is a task</p>
+          <p>Lorem ipsum dolor sit amet. </p>
         </li>
         <li>
-          <p>This is a task</p>
+          <p>Lorem ipsum sit.</p>
         </li>
         <li>
-          <p>This is a task</p>
+          <p>Lorem ipsum consectetur.</p>
         </li>
       </ul>
       <span className='arrow'>

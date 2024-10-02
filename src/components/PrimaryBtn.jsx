@@ -6,9 +6,9 @@ const PrimaryBtn = ({ icon, text }) => {
       type='submit'
       variant='soft'
       sx={{
-        backgroundColor: "rgba(var(--global-accent-color-rgb), 0.7)",
+        backgroundColor: "rgba(var(--global-accent-green-rgb), 0.7)",
         "&:hover": {
-          backgroundColor: "var(--global-accent-color)",
+          backgroundColor: "var(--global-accent-green)",
         },
       }}
       className='primary_btn'
