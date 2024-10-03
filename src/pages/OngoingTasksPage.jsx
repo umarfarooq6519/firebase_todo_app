@@ -7,6 +7,7 @@ import { Divider } from "@mui/joy";
 import DashboardHeader from "../components/DashboardHeader";
 import TodoList from "../components/TodoList";
 import Loading from "../components/Loading";
+import arrow_left from "/arrow_left.svg";
 
 const OngoingTasksPage = () => {
   const { user, handleLogout, loading } = useAuthContext();
@@ -36,9 +37,9 @@ const OngoingTasksPage = () => {
         }}
       />
 
-      <span className='tasks_heading flex_between'>
+      <span className='tasks_heading flex_start'>
         <Link to='/dashboard'>
-          <p>Go Back</p>
+          <img src={arrow_left} alt='Go back' className='icon' />
         </Link>
         <h3>Ongoing Tasks</h3>
       </span>

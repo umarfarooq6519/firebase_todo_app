@@ -305,7 +305,6 @@ button:disabled {
   margin: 0;
   gap: 10px;
 }
-
 .todo_list .item {
   width: 100%;
   height: fit-content;

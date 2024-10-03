@@ -71,6 +71,11 @@ function TodoList({ tasks, input }) {
     return <LinearProgress thickness={2} color='neutral' variant='soft' />;
   }
 
+  if (tasks.length == 0) {
+    // check if no tasks are found
+    return <p className='empty_tasks flex_center'>It's empty here :(</p>;
+  }
+
   const TasksList = () => {
     return (
       <ul className='todo_list flex_col_start'>
@@ -85,7 +90,12 @@ function TodoList({ tasks, input }) {
               onClick={() => handleUpdateTask(task)}
               checked={task.completed}
             />
-            <span className='text'>
+            <span
+              className='text'
+              style={{
+                textDecoration: task.completed ? "line-through" : "none",
+              }}
+            >
               {task.text}
               {/* <p className='time'>{task.time}</p> */}
             </span>
