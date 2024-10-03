@@ -149,12 +149,6 @@ input {
   min-width: 100%;
   width: var(--global-container-sm);
 }
-@media screen and (min-width: 768px) {
-  .container {
-    min-width: 100%;
-    width: var(--global-container-base);
-  }
-}
 
 /* ######## Flex Styles ######### */
 .flex_center {
@@ -188,6 +182,7 @@ input {
 .flex_col_between {
   /* width: 100%; */
   display: flex;
+  border: 1px solid;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -328,7 +323,7 @@ button:disabled {
 }
 .todo_list .item .text {
   /* for scrolling tasks */
-  /* width: 100%; */
+  width: 100%;
   /* overflow-y: hidden;
   overflow-x: scroll;
   white-space: nowrap;
@@ -377,7 +372,7 @@ button:disabled {
 }
 .fancy_box:nth-child(2) .arrow .icon {
   /* dark theme arrow for completed tasks box */
-  content: url("../public/arrow_right_dark.svg");
+  content: url("/arrow_right_dark.svg");
 }
 .fancy_box:nth-child(2) .tasks {
   text-decoration: line-through;
@@ -389,6 +384,7 @@ button:disabled {
 }
 .fancy_box .tasks p {
   /* to prevent overflowing */
+  width: 100%;
   max-width: 135px;
   font-size: var(--font-xs-size);
   font-weight: var(--font-weight-light);
@@ -422,4 +418,16 @@ button:disabled {
   display: flex;
   justify-content: end;
   height: 20px;
+}
+
+/* ########### Responsive Media Screen ############# */
+
+@media screen and (min-width: 768px) {
+  .container {
+    min-width: 100%;
+    width: var(--global-container-base);
+  }
+  .fancy_box .tasks p {
+    max-width: 155px;
+  }
 }

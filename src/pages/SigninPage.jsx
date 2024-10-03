@@ -13,7 +13,7 @@ import signin_icon from "/signin_icon.svg";
 
 function SigninPage() {
   // access authContext variables
-  const { error, loading, handleGoogleLogin, handleEmailSignin, setError } =
+  const { error, setError, loading, googleSignin, emailSignin } =
     useAuthContext();
 
   const navigate = useNavigate();
@@ -21,10 +21,10 @@ function SigninPage() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const handleSignin = async (e) => {
+  const handleEmailSignin = async (e) => {
     e.preventDefault();
     try {
-      await handleEmailSignin(email, pass);
+      await emailSignin(email, pass);
       navigate("/dashboard");
     } catch (error) {
       console.log("handleSignin() error: ", error);
@@ -32,6 +32,15 @@ function SigninPage() {
 
     setEmail("");
     setPass("");
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await googleSignin();
+      navigate("/dashboard");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -59,7 +68,7 @@ function SigninPage() {
         </div>
 
         <div className='wrapper container'>
-          <form onSubmit={handleSignin} className='login_form'>
+          <form onSubmit={handleEmailSignin} className='login_form'>
             <EmailPassInput
               email={email}
               setEmail={setEmail}
@@ -89,7 +98,7 @@ function SigninPage() {
             OR
           </Divider>
 
-          <GoogleBtn onClick={handleGoogleLogin} loading={loading} />
+          <GoogleBtn onClick={handleGoogleSignin} loading={loading} />
 
           <p className='login_link'>
             Don't have an account?

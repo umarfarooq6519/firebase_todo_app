@@ -65,7 +65,7 @@ const DashboardHeader = () => {
           <div className='acc_info flex_col_start'>
             <h5 className='name'>
               Hey, {f_name}
-              <span style={{ fontSize: "18px" }}>👋</span>{" "}
+              <span>👋</span>
             </h5>
             <span className='greetings'>What's on your mind today?</span>
           </div>

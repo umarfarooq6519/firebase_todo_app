@@ -4,7 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SignupPage from "./pages/SignupPage";
 import SigninPage from "./pages/SigninPage";
 import Dashboard from "./pages/Dashboard";
-import OngoingTasks from "./pages/OngoingTasks";
+import OngoingTasksPage from "./pages/OngoingTasksPage";
+import CompletedTasksPage from "./pages/CompletedTasksPage";
 
 function App() {
   return (
@@ -13,7 +14,8 @@ function App() {
         <Route path='/' element={<SignupPage />} />
         <Route path='/signin' element={<SigninPage />} />
         <Route path='/dashboard' element={<Dashboard />} />
-        <Route path='/ongoing_tasks' element={<OngoingTasks />} />
+        <Route path='/ongoing_tasks' element={<OngoingTasksPage />} />
+        <Route path='/completed_tasks' element={<CompletedTasksPage />} />
       </Routes>
     </BrowserRouter>
   );

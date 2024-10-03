@@ -50,7 +50,7 @@ function useAuth() {
       .finally(() => setLoading(false));
   };
 
-  const handleEmailSignin = async (email, password) => {
+  const emailSignin = async (email, password) => {
     setLoading(true);
     try {
       const result = await signInWithEmailAndPassword(auth, email, password);
@@ -77,7 +77,7 @@ function useAuth() {
     }
   };
 
-  const handleEmailSignup = async (name, email, password) => {
+  const emailSignup = async (name, email, password) => {
     setLoading(true);
     try {
       const result = await createUserWithEmailAndPassword(
@@ -114,7 +114,7 @@ function useAuth() {
     }
   };
 
-  const handleGoogleLogin = async () => {
+  const googleSignin = async () => {
     setLoading(true);
     try {
       const result = await signInWithPopup(auth, googleProvider);
@@ -122,7 +122,6 @@ function useAuth() {
         setUser(result.user);
       }
     } catch (error) {
-      console.log(error);
       setError("An error occured, please try again!");
     } finally {
       setLoading(false);
@@ -134,10 +133,10 @@ function useAuth() {
     error,
     setError,
     loading,
-    handleGoogleLogin,
+    googleSignin,
+    emailSignup,
+    emailSignin,
     handleLogout,
-    handleEmailSignup,
-    handleEmailSignin,
   };
 }
 

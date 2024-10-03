@@ -1,5 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
+import { useDBcontext } from "../contexts/DBContext";
 import { Divider } from "@mui/joy";
 import "../styles/Dashboard.css";
 
@@ -7,7 +8,6 @@ import Loading from "../components/Loading";
 import FancyBox from "../components/FancyBox";
 import FancyBoxSmall from "../components/FancyBoxSmall";
 import DashboardHeader from "../components/DashboardHeader";
-// import TodoList from "../components/TodoList";
 
 function Dashboard() {
   // access authContext variables
@@ -15,9 +15,13 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  const { ongoingTasks, completedTasks } = useDBcontext();
+
   const handleOngoingClick = () => {
     navigate("/ongoing_tasks");
-    console.log("Ongoing navigated.");
+  };
+  const handleCompletedClick = () => {
+    navigate("/completed_tasks");
   };
 
   if (loading) {
@@ -33,7 +37,7 @@ function Dashboard() {
   // ########### Dashboard ###########
 
   return (
-    <section className='dashboard '>
+    <section className='dashboard'>
       <div className='wrapper'>
         <DashboardHeader user={user} handleLogout={handleLogout} />
       </div>
@@ -47,8 +51,16 @@ function Dashboard() {
 
       <div className='content container'>
         <div className='main_menu'>
-          <FancyBox text='Ongoing Tasks' handleClick={handleOngoingClick} />
-          <FancyBox text='Completed Tasks' />
+          <FancyBox
+            text='Ongoing Tasks'
+            handleClick={handleOngoingClick}
+            tasks='ongoing'
+          />
+          <FancyBox
+            text='Completed Tasks'
+            handleClick={handleCompletedClick}
+            tasks='completed'
+          />
           <FancyBoxSmall text='My Notes' />
           <FancyBoxSmall text='New Task' />
         </div>

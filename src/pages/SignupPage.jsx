@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import "../styles/SignupPage.css";
-import { CircularProgress, Divider } from "@mui/joy";
+import { Divider } from "@mui/joy";
 
 import Dashboard from "./Dashboard";
 import EmailPassInput from "../components/EmailPassInput";
@@ -14,7 +14,7 @@ import Loading from "../components/Loading";
 
 function SignupPage() {
   // access authContext variables
-  const { handleGoogleLogin, handleEmailSignup, error, loading, setError } =
+  const { error, setError, loading, googleSignin, emailSignup } =
     useAuthContext();
 
   const navigate = useNavigate();
@@ -23,18 +23,27 @@ function SignupPage() {
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
-  const handleSignup = async (e) => {
+  const handleEmailSignup = async (e) => {
     e.preventDefault();
     try {
-      await handleEmailSignup(name, email, pass);
+      await emailSignup(name, email, pass);
       navigate("/dashboard");
     } catch (error) {
-      console.log("handleSignup() error: ", error);
+      console.log("EmailSignup error: ", error);
     }
 
     setName("");
     setEmail("");
     setPass("");
+  };
+
+  const handleGoogleSignin = async () => {
+    try {
+      await googleSignin();
+      navigate("/dashboard");
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   useEffect(() => {
@@ -60,7 +69,7 @@ function SignupPage() {
         </div>
 
         <div className='wrapper container'>
-          <form onSubmit={handleSignup} className='login_form'>
+          <form onSubmit={handleEmailSignup} className='login_form'>
             <input
               type='text'
               placeholder='your name'
@@ -99,7 +108,7 @@ function SignupPage() {
             OR
           </Divider>
 
-          <GoogleBtn onClick={handleGoogleLogin} />
+          <GoogleBtn onClick={handleGoogleSignin} />
 
           <p className='login_link'>
             Already have an account?

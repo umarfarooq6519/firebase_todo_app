@@ -1,0 +1,9 @@
+.completed_tasks_page {
+  padding: 14px;
+  display: grid;
+  justify-content: center;
+}
+
+.completed_tasks_page .tasks_heading {
+  margin-bottom: 14px;
+}
