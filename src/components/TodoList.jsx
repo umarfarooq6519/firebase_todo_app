@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useDBcontext } from "../contexts/DBContext";
+import { Timestamp } from "firebase/firestore";
 import {
   Dropdown,
   MenuButton,
@@ -10,6 +11,7 @@ import {
 } from "@mui/joy";
 
 import vertical_menu from "/vertical_menu.svg";
+import send_icon from "/send_icon.svg";
 
 function TodoList({ tasks, input }) {
   const [text, setText] = useState("");
@@ -17,14 +19,31 @@ function TodoList({ tasks, input }) {
   const { addTask, taskLoading, updateTaskCompleted } = useDBcontext();
 
   const handleAddTask = async (e) => {
+    // function to handle add task
     e.preventDefault();
     let time = new Date();
-    // let temp = text;
     setText("");
     await addTask(text, time);
   };
-  const handleUpdateTask = (task) => {
+
+  const handleTaskCompletion = (task) => {
+    // toggle task complete state (true or false)
     updateTaskCompleted(task);
+  };
+
+  const formatTimestamp = (timestamp) => {
+    // formating firestore timestamp to display
+    if (timestamp instanceof Timestamp) {
+      return timestamp.toDate().toLocaleString("en-US", {
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true, // use 12-hour format
+      });
+    }
+    return "N/A";
   };
 
   const ItemMenu = (
@@ -71,10 +90,9 @@ function TodoList({ tasks, input }) {
     return <LinearProgress thickness={2} color='neutral' variant='soft' />;
   }
 
-  if (tasks.length == 0) {
-    // check if no tasks are found
-    return <p className='empty_tasks flex_center'>It's empty here :(</p>;
-  }
+  const emptyTasks = (
+    <p className='empty_tasks flex_center'>It's empty here :(</p>
+  );
 
   const TasksList = () => {
     return (
@@ -87,17 +105,14 @@ function TodoList({ tasks, input }) {
               label=''
               size='sm'
               variant='outlined'
-              onClick={() => handleUpdateTask(task)}
+              onClick={() => handleTaskCompletion(task)}
               checked={task.completed}
             />
-            <span
-              className='text'
-              style={{
-                textDecoration: task.completed ? "line-through" : "none",
-              }}
-            >
-              {task.text}
-              {/* <p className='time'>{task.time}</p> */}
+            <span className='text'>
+              <span className={`${task.completed ? "completed_task" : ""}`}>
+                {task.text}
+              </span>
+              <p className='time'>{formatTimestamp(task.time)}</p>
             </span>
             {ItemMenu}
           </li>
@@ -110,17 +125,22 @@ function TodoList({ tasks, input }) {
 
   return (
     <>
-      <TasksList />
+      {tasks.length == 0 ? emptyTasks : <TasksList />}
       {input && (
         <form onSubmit={handleAddTask} className='todo_form'>
-          <input
-            type='text'
-            disabled={taskLoading}
-            onChange={(e) => setText(e.target.value)}
-            value={text}
-            className='input'
-            placeholder='Add new task...'
-          />
+          <div className='input_container'>
+            <input
+              type='text'
+              disabled={taskLoading}
+              onChange={(e) => setText(e.target.value)}
+              value={text}
+              className='input'
+              placeholder='Add new task...'
+            />
+            <button type='submit' className='icon_wrapper'>
+              <img src={send_icon} alt='send' className='icon' />
+            </button>
+          </div>
         </form>
       )}
     </>

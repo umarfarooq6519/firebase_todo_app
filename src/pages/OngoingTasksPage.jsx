@@ -8,11 +8,16 @@ import DashboardHeader from "../components/DashboardHeader";
 import TodoList from "../components/TodoList";
 import Loading from "../components/Loading";
 import arrow_left from "/arrow_left.svg";
+import { useEffect } from "react";
 
 const OngoingTasksPage = () => {
   const { user, handleLogout, loading } = useAuthContext();
   const { ongoingTasks } = useDBcontext();
   const navigate = useNavigate();
+
+  useEffect(() => {
+    console.log(ongoingTasks);
+  }, [ongoingTasks])
 
   if (loading) {
     return <Loading />;
