@@ -67,7 +67,7 @@ const DashboardHeader = () => {
               Hey, {f_name}
               <span>👋</span>
             </h5>
-            <span className='greetings'>What's on your mind today?</span>
+            <p className='greetings'>What's on your mind today?</p>
           </div>
         </div>
 

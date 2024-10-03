@@ -15,14 +15,16 @@ const FancyBox = ({ text, handleClick, tasks }) => {
   }, [tasks, ongoingTasks, completedTasks]);
 
   return (
-    <div onClick={handleClick} className='fancy_box flex_col_between'>
+    <div onClick={handleClick} className='fancy_box flex_col_between shadow_sm'>
       <h4>
         {text1} <br /> {text2}
       </h4>
       <ul className='tasks'>
         {tasksList.slice(0, 3).map((task) => (
           <li key={task.id}>
-            <p>{task.text}</p>
+            <p className={task.completed ? "completed_task" : ""}>
+              {task.text}
+            </p>
           </li>
         ))}
         {tasksList.length === 0 && <p>No tasks available.</p>}

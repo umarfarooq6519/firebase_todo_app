@@ -11,5 +11,4 @@
 }
 .ongoing_tasks_page .tasks_heading .icon {
   width: var(--global-icon-xl);
-  margin-top: 0.75px;
 }

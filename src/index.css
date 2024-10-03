@@ -1,6 +1,7 @@
 :root {
   /* ##### font family variables ##### */
-  --font-family-body: General Sans, sans-serif;
+  --font-family-body: "General Sans", sans-serif;
+  --font-family-heading: "Clash Display", sans-serif;
 
   /* ##### font size variables ##### */
   --font-xs-size: 13px;
@@ -41,8 +42,8 @@
   --global-icon-2xl: 32px;
 
   /* global shadows */
-  --global-shadow-sm: 0 0 6px 0 rgba(0, 0, 0, 0.1);
-  --global-shadow-base: 0 0 8px 1px rgba(0, 0, 0, 0.12);
+  --global-shadow-sm: 0 0 6px 0 rgba(0, 0, 0, 0.15);
+  --global-shadow-base: 0 0 8px 1px rgba(0, 0, 0, 0.15);
   --global-shadow-lg: 0 0 10px 2px rgba(0, 0, 0, 0.15);
 
   /* global containers */
@@ -89,29 +90,34 @@ p {
 h1 {
   font-size: 32px;
   line-height: 30px;
+  font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
 }
 
 h2 {
   font-size: 28px;
   line-height: 28px;
+  font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
 }
 
 h3 {
-  font-size: 24px;
+  font-size: 26px;
+  font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 24px;
 }
 
 h4 {
   font-size: 20px;
+  font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 21px;
 }
 
 h5 {
   font-size: 16px;
+  font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
 }
@@ -211,6 +217,19 @@ button:disabled {
   color: red;
   gap: 4px;
 }
+
+/* ############ shadow variables ############ */
+.shadow_sm {
+  box-shadow: var(--global-shadow-sm);
+}
+.shadow_base {
+  box-shadow: var(--global-shadow-base);
+}
+.shadow_lg {
+  box-shadow: var(--global-shadow-lg);
+}
+
+/* ########### Fancy Button ############ */
 
 .fancy_button {
   height: 45px;
@@ -332,6 +351,7 @@ button:disabled {
 }
 .todo_list .time {
   font-size: var(--font-xs-size);
+  margin-top: 2px;
 }
 .todo_list .item .text::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
@@ -373,9 +393,6 @@ button:disabled {
   /* or ongoing tasks */
   border: 1px solid var(--global-text-color);
   background: var(--global-accent-green);
-}
-.fancy_box h4 {
-  font-weight: var(--font-weight-medium);
 }
 .fancy_box .heading .icon {
   width: var(--global-icon-sm);

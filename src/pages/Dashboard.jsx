@@ -50,6 +50,7 @@ function Dashboard() {
       />
 
       <div className='content container'>
+        <h3 className='heading'>Dashboard</h3>
         <div className='main_menu'>
           <FancyBox
             text='Ongoing Tasks'

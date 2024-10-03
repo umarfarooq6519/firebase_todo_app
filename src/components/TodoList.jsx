@@ -134,7 +134,7 @@ function TodoList({ tasks, input }) {
               disabled={taskLoading}
               onChange={(e) => setText(e.target.value)}
               value={text}
-              className='input'
+              className='input shadow_sm'
               placeholder='Add new task...'
             />
             <button type='submit' className='icon_wrapper'>

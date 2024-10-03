@@ -4,7 +4,7 @@ const FancyBoxSmall = ({ text }) => {
   return (
     <div
       onClick={() => alert("done")}
-      className='fancy_box fancy_box_small flex_between'
+      className='fancy_box fancy_box_small flex_between shadow_sm'
     >
       <h4>{text}</h4>
       <span className='arrow'>
