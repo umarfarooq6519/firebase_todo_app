@@ -23,9 +23,7 @@ function useAuth() {
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      if (user) {
-        setUser(currentUser);
-      }
+      setUser(currentUser);
       setLoading(false);
     });
 
