@@ -24,7 +24,7 @@
   --global-text-color: #222222;
   --global-accent-green: #d0e9bc;
   --global-accent-green-rgb: 208, 233, 188;
-  --global-accent-red: #7D1212;
+  --global-accent-red: #7d1212;
   --global-accent-purple: #e5d9f2;
   /* some other choice I had > c1d8c3 fff5e4 */
 
@@ -47,8 +47,8 @@
   --global-shadow-lg: 0 0 10px 2px rgba(0, 0, 0, 0.15);
 
   /* global containers */
-  --global-container-sm: 320px;
-  --global-container-base: 360px;
+  --global-container-sm: 340px;
+  --global-container-base: 370px;
 }
 
 html {
@@ -119,6 +119,13 @@ h5 {
   font-size: 16px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
+  line-height: 20px;
+}
+
+h6 {
+  font-size: 15px;
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-medium);
   line-height: 20px;
 }
 
@@ -285,11 +292,11 @@ button:disabled {
 /* ################ Dashboard Header Component ################ */
 .dashboard_header .account {
   width: 100%;
-  gap: 8px;
+  gap: 6px;
   font-weight: var(--font-weight-semibold);
 }
 .dashboard_header .account .greetings {
-  font-weight: var(--font-weight-light);
+  font-weight: var(--font-weight-normal);
   font-size: var(--font-xs-size);
 }
 .dashboard_header .account .avatar {
@@ -392,6 +399,32 @@ button:disabled {
   cursor: pointer; /* Optional: make it clickable */
 }
 
+/* ########### Fancy Box Full ############ */
+.fancy_box_full {
+  max-width: 100%;
+  height: 150px;
+  padding: 8px;
+  border-radius: var(--global-radius-base);
+  /* cursor: pointer; */
+  /* or ongoing tasks */
+  border: 1px solid var(--global-text-color);
+  /* background: var(--global-accent-green); */
+  margin-bottom: 8px;
+}
+.fancy_box_full .progress h3 {
+  max-width: 180px;
+  /* border: 1px solid; */
+}
+.fancy_box_full .progress .text {
+  max-width: 230px;
+  margin-top: 2px;
+}
+.fancy_box_full .heading .date .icon {
+  width: var(--global-icon-xs);
+  opacity: 0.9;
+  margin-right: 2px;
+}
+
 /* ############ Fancy Box ############# */
 .fancy_box {
   max-width: 100%;
@@ -423,14 +456,18 @@ button:disabled {
   text-decoration: line-through;
 }
 .fancy_box .tasks {
-  margin-top: 4px;
-  list-style: none;
-  line-height: 1.4;
+  margin-bottom: 2px;
+  list-style: circle;
+  list-style-position: outside;
+  margin-left: 18px;
+  line-height: 1.2;
 }
 .fancy_box .tasks p {
   /* to prevent overflowing */
   width: 100%;
+  opacity: 1;
   max-width: 135px;
+  margin-left: -6px;
   font-size: var(--font-xs-size);
   font-weight: var(--font-weight-light);
   white-space: nowrap;
@@ -456,6 +493,7 @@ button:disabled {
   width: fit-content !important;
 }
 .fancy_box .icon {
+  margin-left: 4px;
   width: var(--global-icon-sm);
 }
 .fancy_box .arrow {
@@ -463,6 +501,22 @@ button:disabled {
   display: flex;
   justify-content: end;
   height: 20px;
+}
+
+/* ################ New Task Button ############## */
+.new_task_btn {
+  margin-block: 10px;
+  border: none;
+  border-radius: var(--global-radius-lg);
+  background-color: var(--global-text-color);
+  color: var(--global-bg-color);
+}
+.new_task_btn .icon {
+  width: var(--global-icon-sm);
+  margin-right: 4px;
+}
+.new_task_btn h5 {
+  font-weight: var(--font-weight-medium);
 }
 
 /* ########### Responsive Media Screen ############# */

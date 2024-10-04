@@ -8,32 +8,48 @@ import {
   MenuItem,
   Checkbox,
   LinearProgress,
+  Snackbar,
 } from "@mui/joy";
 
 import vertical_menu from "/vertical_menu.svg";
 import send_icon from "/send_icon.svg";
 import bin_icon from "/bin_icon.svg";
+import NewTask from "./NewTask";
 
 function TodoList({ tasks, input }) {
   const [text, setText] = useState("");
+  const [snackbar, setSnackbar] = useState({ open: false, color: "" });
 
   const { addTask, delTask, taskLoading, updateTaskCompleted } = useDBcontext();
 
   const handleAddTask = async (e) => {
     // function to handle add task
     e.preventDefault();
+    if (text.trim() === "") return; // if empty don't do anything
+    setSnackbar({ open: true, color: "success" });
     let time = new Date();
     setText("");
     await addTask(text, time);
-  };
 
+    setTimeout(() => {
+      // Set snackbar to false after 1.5s
+      setSnackbar({ open: false, color: "" });
+    }, 1500);
+  };
   const handleDelTask = async (taskID) => {
+    // function to handle delete task
+    setSnackbar({ open: true, color: "danger" });
     await delTask(taskID);
+
+    setTimeout(() => {
+      // Set snackbar to false after 1.5s
+      setSnackbar({ open: false, color: "" });
+    }, 1500);
   };
 
-  const handleTaskCompletion = (task) => {
-    // toggle task complete state (true or false)
-    updateTaskCompleted(task);
+  const handleTaskCompletion = async (task) => {
+    // toggle task complete state (boolean)
+    await updateTaskCompleted(task);
   };
 
   const formatTimestamp = (timestamp) => {
@@ -103,19 +119,33 @@ function TodoList({ tasks, input }) {
   }
 
   const emptyTasks = (
-    <p className='empty_tasks flex_center'>It's empty here :(</p>
+    <p className='empty_tasks flex_center'>It's empty here!😕</p>
   );
+
+  const SnackbarAlert = () => {
+    return (
+      <Snackbar
+        open={snackbar.open}
+        autoHideDuration={1500}
+        color={snackbar.color ? snackbar.color : "neutral"}
+        variant='outlined'
+      >
+        {snackbar.color === "success" ? "Task Added!" : "Task Removed!"}
+      </Snackbar>
+    );
+  };
 
   const TasksList = () => {
     return (
       <ul className='todo_list flex_col_start'>
+        <SnackbarAlert />
         {tasks.map((task) => (
           <li key={task.id} className='item flex_between'>
             <Checkbox
               sx={{ marginRight: "6px" }}
               color='neutral'
               label=''
-              size='sm'
+              size='md'
               variant='outlined'
               onClick={() => handleTaskCompletion(task)}
               checked={task.completed}
@@ -153,6 +183,7 @@ function TodoList({ tasks, input }) {
               <img src={send_icon} alt='send' className='icon' />
             </button>
           </div>
+          {/* <NewTask /> */}
         </form>
       )}
     </>

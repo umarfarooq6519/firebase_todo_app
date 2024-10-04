@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/AuthContext";
 import { useDBcontext } from "../contexts/DBContext";
-import { Divider } from "@mui/joy";
+import { CircularProgress, Divider } from "@mui/joy";
 import "../styles/Dashboard.css";
 
 import Loading from "../components/Loading";
@@ -10,6 +10,7 @@ import FancyBoxSmall from "../components/FancyBoxSmall";
 import DashboardHeader from "../components/DashboardHeader";
 
 import dashboard_icon from "/dashboard_icon.svg";
+import ProgressBox from "../components/ProgressBox";
 
 function Dashboard() {
   // access authContext variables
@@ -53,6 +54,9 @@ function Dashboard() {
         <h3 className='heading flex_start'>
           <img src={dashboard_icon} className='icon' alt='' /> Dashboard
         </h3>
+
+        <ProgressBox text='Your Progress' />
+
         <div className='main_menu'>
           <FancyBox
             text='Ongoing Tasks'
@@ -64,8 +68,8 @@ function Dashboard() {
             handleClick={handleCompletedClick}
             tasks='completed'
           />
-          <FancyBoxSmall text='My Notes' />
-          <FancyBoxSmall text='New Task' />
+          {/* <FancyBoxSmall text='Progress' />
+          <FancyBoxSmall text='New Task' /> */}
         </div>
       </div>
     </section>

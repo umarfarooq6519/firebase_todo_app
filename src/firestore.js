@@ -44,7 +44,6 @@ function useDB() {
   };
   const checkFetching = (ongoing, completed) => {
     if (ongoing && completed) setTaskLoading(false); //reset loading to false
-    console.log("Tasks fetched!");
   };
 
   const addTask = async (text, time) => {
@@ -56,7 +55,7 @@ function useDB() {
         time,
         completed: false,
       });
-      console.log("task added with id: ", docRef.id);
+      console.log("task added with id ", docRef.id);
     } catch (error) {
       console.log("error adding task: ", error);
     }
@@ -66,7 +65,7 @@ function useDB() {
     // function for deleting task from firestore
     try {
       await deleteDoc(doc(db, "tasks", taskID));
-      console.log("Task deleted: ", taskID);
+      console.log("Task deleted with id ", taskID);
     } catch (e) {
       console.log(e);
     }
@@ -81,7 +80,6 @@ function useDB() {
       await updateDoc(taskRef, {
         completed: !task.completed,
       });
-      console.log("Task Updated");
     } catch (e) {
       console.log(e);
     }
@@ -101,7 +99,6 @@ function useDB() {
       // function to fetch ongoing tasks realtime
       const taskList = mapQuerySnapshots(querySnapshot);
       setOngoingTasks(taskList);
-      // console.log(taskList);
 
       ongoingFetched = true; // mark as fetched
       checkFetching(ongoingFetched, completedFetched);

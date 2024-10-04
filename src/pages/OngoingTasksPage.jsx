@@ -8,7 +8,6 @@ import DashboardHeader from "../components/DashboardHeader";
 import TodoList from "../components/TodoList";
 import Loading from "../components/Loading";
 import arrow_left from "/arrow_left.svg";
-import { useEffect } from "react";
 
 const OngoingTasksPage = () => {
   const { user, handleLogout, loading } = useAuthContext();
@@ -38,12 +37,12 @@ const OngoingTasksPage = () => {
         }}
       />
 
-      <span className='tasks_heading flex_start'>
+      <div className='tasks_heading flex_start'>
         <Link to='/dashboard'>
           <img src={arrow_left} alt='Go back' className='icon' />
         </Link>
         <h3>Ongoing Tasks</h3>
-      </span>
+      </div>
 
       <div className='content container'>
         <TodoList tasks={ongoingTasks} input={true} />

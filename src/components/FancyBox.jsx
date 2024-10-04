@@ -21,7 +21,7 @@ const FancyBox = ({ text, handleClick, tasks }) => {
       </h4>
       <ul className='tasks'>
         {tasksList.slice(0, 3).map((task) => (
-          <li key={task.id}>
+          <li key={task.id} className="">
             <p className={task.completed ? "completed_task" : ""}>
               {task.text}
             </p>
@@ -30,6 +30,7 @@ const FancyBox = ({ text, handleClick, tasks }) => {
         {tasksList.length === 0 && <p>No tasks available.</p>}
       </ul>
       <span className='arrow'>
+        <h6>View all</h6>
         <img src={arrow_right_light} className='icon' alt='' />
       </span>
     </div>
