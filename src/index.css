@@ -457,7 +457,8 @@ button:disabled {
 }
 .fancy_box .tasks {
   margin-bottom: 2px;
-  list-style: circle;
+  list-style-type: circle;
+  -webkit-list-style-type: circle;
   list-style-position: outside;
   margin-left: 18px;
   line-height: 1.2;
