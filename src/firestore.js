@@ -8,6 +8,7 @@ import {
   where,
   query,
   onSnapshot,
+  deleteDoc,
 } from "firebase/firestore";
 import { useAuthContext } from "./contexts/AuthContext";
 
@@ -61,6 +62,16 @@ function useDB() {
     }
   };
 
+  const delTask = async (taskID) => {
+    // function for deleting task from firestore
+    try {
+      await deleteDoc(doc(db, "tasks", taskID));
+      console.log("Task deleted: ", taskID);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const updateTaskCompleted = async (task) => {
     // function for updating task complete staus (using checkbox)
     const taskRef = doc(db, "tasks", task.id);
@@ -90,6 +101,7 @@ function useDB() {
       // function to fetch ongoing tasks realtime
       const taskList = mapQuerySnapshots(querySnapshot);
       setOngoingTasks(taskList);
+      // console.log(taskList);
 
       ongoingFetched = true; // mark as fetched
       checkFetching(ongoingFetched, completedFetched);
@@ -112,6 +124,7 @@ function useDB() {
 
   return {
     addTask,
+    delTask,
     ongoingTasks,
     completedTasks,
     updateTaskCompleted,

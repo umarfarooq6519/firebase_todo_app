@@ -15,10 +15,6 @@ const OngoingTasksPage = () => {
   const { ongoingTasks } = useDBcontext();
   const navigate = useNavigate();
 
-  useEffect(() => {
-    console.log(ongoingTasks);
-  }, [ongoingTasks])
-
   if (loading) {
     return <Loading />;
   }

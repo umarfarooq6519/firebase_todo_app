@@ -1,3 +1,5 @@
+// TODO: add task delete option and notes functionality
+// 85% at 11:35 am
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // following are the only routes needed for this app.

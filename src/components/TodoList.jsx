@@ -12,11 +12,12 @@ import {
 
 import vertical_menu from "/vertical_menu.svg";
 import send_icon from "/send_icon.svg";
+import bin_icon from "/bin_icon.svg";
 
 function TodoList({ tasks, input }) {
   const [text, setText] = useState("");
 
-  const { addTask, taskLoading, updateTaskCompleted } = useDBcontext();
+  const { addTask, delTask, taskLoading, updateTaskCompleted } = useDBcontext();
 
   const handleAddTask = async (e) => {
     // function to handle add task
@@ -24,6 +25,10 @@ function TodoList({ tasks, input }) {
     let time = new Date();
     setText("");
     await addTask(text, time);
+  };
+
+  const handleDelTask = async (taskID) => {
+    await delTask(taskID);
   };
 
   const handleTaskCompletion = (task) => {
@@ -46,45 +51,52 @@ function TodoList({ tasks, input }) {
     return "N/A";
   };
 
-  const ItemMenu = (
-    <Dropdown>
-      <MenuButton
-        variant='plain'
-        size='sm'
-        sx={{
-          padding: "0",
-        }}
-      >
-        <img src={vertical_menu} alt='...' className='icon' />
-      </MenuButton>
-      <Menu
-        variant='plain'
-        size='sm'
-        sx={{
-          padding: "0",
-        }}
-      >
-        <MenuItem
+  const ItemMenu = (task) => {
+    return (
+      <Dropdown>
+        <MenuButton
+          variant='plain'
+          size='sm'
           sx={{
-            padding: "0 20px",
-            border: "0",
-            fontSize: "16px",
+            padding: "0",
           }}
         >
-          Edit
-        </MenuItem>
-        <MenuItem
+          <img src={vertical_menu} alt='...' className='icon' />
+        </MenuButton>
+        <Menu
+          variant='plain'
+          size='sm'
           sx={{
-            padding: "0 20px",
-            border: "0",
-            fontSize: "16px",
+            padding: "0",
           }}
         >
-          Delete
-        </MenuItem>
-      </Menu>
-    </Dropdown>
-  );
+          <MenuItem
+            sx={{
+              padding: "0 20px",
+              border: "0",
+              fontSize: "16px",
+            }}
+          >
+            Edit
+          </MenuItem>
+          <MenuItem
+            variant='soft'
+            color='danger'
+            className='menu_item task_delete_menu'
+            onClick={() => handleDelTask(task.task.id)}
+            sx={{
+              padding: "0 10px",
+              border: "0",
+              fontSize: "16px",
+            }}
+          >
+            <img src={bin_icon} alt='' className='icon bin_icon' />
+            Delete
+          </MenuItem>
+        </Menu>
+      </Dropdown>
+    );
+  };
 
   if (taskLoading) {
     return <LinearProgress thickness={2} color='neutral' variant='soft' />;
@@ -114,7 +126,7 @@ function TodoList({ tasks, input }) {
               </span>
               <p className='time'>{formatTimestamp(task.time)}</p>
             </span>
-            {ItemMenu}
+            <ItemMenu task={task} />
           </li>
         ))}
       </ul>

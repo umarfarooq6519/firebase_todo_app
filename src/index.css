@@ -24,7 +24,7 @@
   --global-text-color: #222222;
   --global-accent-green: #d0e9bc;
   --global-accent-green-rgb: 208, 233, 188;
-  --global-accent-red: #ff8a8a;
+  --global-accent-red: #7D1212;
   --global-accent-purple: #e5d9f2;
   /* some other choice I had > c1d8c3 fff5e4 */
 
@@ -313,7 +313,7 @@ button:disabled {
   font-weight: var(--font-weight-normal);
 }
 .menu_item .icon {
-  margin-right: 6px;
+  margin-right: 4px;
   margin-top: 2px;
 }
 /* ################ Todo List ################ */
@@ -355,6 +355,15 @@ button:disabled {
 }
 .todo_list .item .text::-webkit-scrollbar {
   display: none; /* Chrome, Safari, and Opera */
+}
+.menu_item .bin_icon {
+  position: relative;
+  width: var(--global-icon-sm);
+  margin-right: -4px !important;
+  top: -1px;
+}
+.task_delete_menu {
+  color: var(--global-accent-red) !important;
 }
 
 /* ############## Todo Form ############ */

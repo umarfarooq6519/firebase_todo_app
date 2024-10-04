@@ -9,13 +9,13 @@ import FancyBox from "../components/FancyBox";
 import FancyBoxSmall from "../components/FancyBoxSmall";
 import DashboardHeader from "../components/DashboardHeader";
 
+import dashboard_icon from "/dashboard_icon.svg";
+
 function Dashboard() {
   // access authContext variables
   const { user, handleLogout, loading } = useAuthContext();
 
   const navigate = useNavigate();
-
-  const { ongoingTasks, completedTasks } = useDBcontext();
 
   const handleOngoingClick = () => {
     navigate("/ongoing_tasks");
@@ -50,7 +50,9 @@ function Dashboard() {
       />
 
       <div className='content container'>
-        <h3 className='heading'>Dashboard</h3>
+        <h3 className='heading flex_start'>
+          <img src={dashboard_icon} className='icon' alt='' /> Dashboard
+        </h3>
         <div className='main_menu'>
           <FancyBox
             text='Ongoing Tasks'
