@@ -52,6 +52,7 @@ function useAuth() {
   };
 
   const emailSignin = async (email, password) => {
+    // continue with existing account
     try {
       setLoading(true);
       const result = await signInWithEmailAndPassword(auth, email, password);
@@ -60,6 +61,8 @@ function useAuth() {
         setError("");
         setUser(result.user);
       }
+
+      return result;
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-email":
@@ -72,13 +75,14 @@ function useAuth() {
           setError("Unknown error signing in!");
           break;
       }
-      console.log("Error signing in: ", error);
+      return null;
     } finally {
       setLoading(false);
     }
   };
 
   const emailSignup = async (name, email, password) => {
+    // create a new account
     try {
       setLoading(true);
       const result = await createUserWithEmailAndPassword(
@@ -94,22 +98,25 @@ function useAuth() {
         });
         setUser({ ...result.user, displayName: name });
       }
+
+      return result;
     } catch (error) {
       switch (error.code) {
         case "auth/invalid-email":
           setError("The email address is invalid!");
           break;
-        case "auth/weak-password":
-          setError("The password should be atleast 6 characters!");
-          break;
         case "auth/email-already-in-use":
           setError("This email address is already in use!");
+          break;
+        case "auth/weak-password":
+          setError("The password should be atleast 6 characters!");
           break;
         default:
           setError("Unknown error creating account!");
           break;
       }
-      console.log("Error signing in: ", error);
+
+      return null;
     } finally {
       setLoading(false);
     }
@@ -122,8 +129,11 @@ function useAuth() {
       if (result) {
         setUser(result.user);
       }
+
+      return result;
     } catch (error) {
       setError("An error occured, please try again!");
+      return null;
     } finally {
       setLoading(false);
     }

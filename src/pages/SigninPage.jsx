@@ -12,32 +12,37 @@ import warning_icon from "/warning_icon.svg";
 import signin_icon from "/signin_icon.svg";
 
 function SigninPage() {
-  // access authContext variables
-  const { error, setError, loading, googleSignin, emailSignin } =
+  // access authContext
+  const { user, error, setError, loading, googleSignin, emailSignin } =
     useAuthContext();
 
   const navigate = useNavigate();
 
+  // state hooks for form input
   const [email, setEmail] = useState("");
   const [pass, setPass] = useState("");
 
   const handleEmailSignin = async (e) => {
+    // function to handle email signin
     e.preventDefault();
     try {
-      await emailSignin(email, pass);
-      navigate("/dashboard");
+      const result = await emailSignin(email, pass);
+      // go to dashboard if success
+      if (result) navigate("/dashboard");
     } catch (error) {
-      console.log("handleSignin() error: ", error);
+      console.log(error);
+    } finally {
+      // reset form input
+      setEmail("");
+      setPass("");
     }
-
-    setEmail("");
-    setPass("");
   };
 
   const handleGoogleSignin = async () => {
+    // function to handle google signin
     try {
-      await googleSignin();
-      navigate("/dashboard");
+      const result = await googleSignin();
+      if (result) navigate("/dashboard");
     } catch (e) {
       console.log(e);
     }
@@ -49,64 +54,62 @@ function SigninPage() {
   }, []);
 
   if (loading) {
+    // return spinner if loading
     return <Loading />;
   }
 
   // ############ Signin Page ############
 
   return (
-    <>
-      <section className='signin_page'>
-        <div className='content container'>
-          <h2>
-            Continue with <br /> existing Account👋
-          </h2>
-          <p>
-            Please sign-in to continue. The app will use firebase to fetch your
-            data from the cloud.
+    <section className='signin_page'>
+      <div className='content container'>
+        <h2 className='heading'>
+          Continue with <br /> existing Account👋
+        </h2>
+        <p className='text'>
+          Please sign-in to continue. The app will use firebase to fetch your
+          data from the cloud.
+        </p>
+      </div>
+
+      <div className='wrapper container'>
+        <form onSubmit={handleEmailSignin} className='login_form'>
+          <EmailPassInput
+            email={email}
+            setEmail={setEmail}
+            pass={pass}
+            setPass={setPass}
+          />
+
+          <p className='error_msg flex_start'>
+            {/* display error if anything goes wrong */}
+            {error ? <img src={warning_icon} alt='' className='icon' /> : null}
+            {error}
           </p>
-        </div>
 
-        <div className='wrapper container'>
-          <form onSubmit={handleEmailSignin} className='login_form'>
-            <EmailPassInput
-              email={email}
-              setEmail={setEmail}
-              pass={pass}
-              setPass={setPass}
-            />
+          <PrimaryBtn
+            text='Continue'
+            icon={<img src={signin_icon} className='icon'></img>}
+          />
+        </form>
 
-            <p className='error_msg flex_start'>
-              {error ? (
-                <img src={warning_icon} alt='' className='icon' />
-              ) : null}
-              {error}
-            </p>
+        <Divider
+          orientation='horizontal'
+          sx={{
+            marginBlock: "12px",
+          }}
+        >
+          OR
+        </Divider>
 
-            <PrimaryBtn
-              text='Continue'
-              icon={<img src={signin_icon} className='icon'></img>}
-            />
-          </form>
+        <GoogleBtn onClick={handleGoogleSignin} loading={loading} />
 
-          <Divider
-            orientation='horizontal'
-            sx={{
-              marginBlock: "12px",
-            }}
-          >
-            OR
-          </Divider>
-
-          <GoogleBtn onClick={handleGoogleSignin} loading={loading} />
-
-          <p className='login_link'>
-            Don't have an account?
-            <Link to='/'>Sign-up</Link>
-          </p>
-        </div>
-      </section>
-    </>
+        <p className='login_link'>
+          Don't have an account?
+          <Link to='/'>Sign-up</Link>
+        </p>
+      </div>
+    </section>
   );
 }
 
