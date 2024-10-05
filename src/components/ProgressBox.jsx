@@ -78,7 +78,7 @@ const ProgressBox = ({ text }) => {
             }}
             value={completionPercentage}
           >
-            {ongoingLength}/{totalTask}
+            {completedLength}/{totalTask}
           </CircularProgress>
         </span>
       </span>
