@@ -386,6 +386,7 @@ button:disabled {
   width: 100%;
   padding-right: 40px; /* Add padding to make space for the icon */
 }
+
 .todo_form .icon_wrapper {
   position: absolute;
   background-color: transparent;

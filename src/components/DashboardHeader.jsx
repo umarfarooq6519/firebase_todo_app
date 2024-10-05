@@ -57,23 +57,21 @@ const DashboardHeader = () => {
   );
 
   return (
-    <>
-      <div className='dashboard_header container flex_between'>
-        <div className='account flex_start'>
-          <UserAvatar user={user} />
+    <div className='dashboard_header container flex_between'>
+      <div className='account flex_start'>
+        <UserAvatar user={user} />
 
-          <div className='acc_info flex_col_start'>
-            <h5 className='name'>
-              Hey, {f_name}
-              <span>👋</span>
-            </h5>
-            <p className='greetings'>What's on your mind today?</p>
-          </div>
+        <div className='acc_info flex_col_start'>
+          <h5 className='name'>
+            Hey, {f_name}
+            <span>👋</span>
+          </h5>
+          <p className='greetings'>What's on your mind today?</p>
         </div>
-
-        <span className='dropdown'>{AccountMenu}</span>
       </div>
-    </>
+
+      <span className='dropdown'>{AccountMenu}</span>
+    </div>
   );
 };
 

@@ -36,23 +36,24 @@ function useAuth() {
     }
   }, [user]);
 
-  const handleLogout = () => {
-    setLoading(true);
-    signOut(auth)
-      .then(() => {
-        setUser(null);
-        setError("");
-        console.log("Signout successfull");
-      })
-      .catch((error) => {
-        setError(`Can't sign out!`);
-      })
-      .finally(() => setLoading(false));
+  const handleLogout = async () => {
+    try {
+      setLoading(true);
+      await signOut(auth);
+      setUser(null);
+      setError("");
+      console.log("User signed out!");
+    } catch (e) {
+      setError("Can't Sign out!");
+      console.log(e);
+    } finally {
+      setLoading(false);
+    }
   };
 
   const emailSignin = async (email, password) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const result = await signInWithEmailAndPassword(auth, email, password);
 
       if (result) {
@@ -78,8 +79,8 @@ function useAuth() {
   };
 
   const emailSignup = async (name, email, password) => {
-    setLoading(true);
     try {
+      setLoading(true);
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
@@ -115,8 +116,8 @@ function useAuth() {
   };
 
   const googleSignin = async () => {
-    setLoading(true);
     try {
+      setLoading(true);
       const result = await signInWithPopup(auth, googleProvider);
       if (result) {
         setUser(result.user);

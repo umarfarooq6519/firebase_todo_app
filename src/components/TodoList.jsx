@@ -14,13 +14,20 @@ import {
 import vertical_menu from "/vertical_menu.svg";
 import send_icon from "/send_icon.svg";
 import bin_icon from "/bin_icon.svg";
-import NewTask from "./NewTask";
 
 function TodoList({ tasks, input }) {
   const [text, setText] = useState("");
   const [snackbar, setSnackbar] = useState({ open: false, color: "" });
 
   const { addTask, delTask, taskLoading, updateTaskCompleted } = useDBcontext();
+
+  const sortedTasks = tasks.sort((a, b) => {
+    const aTime = a.time.toDate();
+    const bTime = b.time.toDate();
+    return bTime - aTime; // Sort by recent
+  });
+
+  // console.log(sortedTasks);
 
   const handleAddTask = async (e) => {
     // function to handle add task
@@ -87,15 +94,6 @@ function TodoList({ tasks, input }) {
           }}
         >
           <MenuItem
-            sx={{
-              padding: "0 20px",
-              border: "0",
-              fontSize: "16px",
-            }}
-          >
-            Edit
-          </MenuItem>
-          <MenuItem
             variant='soft'
             color='danger'
             className='menu_item task_delete_menu'
@@ -128,7 +126,12 @@ function TodoList({ tasks, input }) {
         open={snackbar.open}
         autoHideDuration={1500}
         color={snackbar.color ? snackbar.color : "neutral"}
-        variant='outlined'
+        variant='soft'
+        sx={{
+          minWidth: "fit-content",
+          border: "1px solid currentColor",
+          padding: "10px 20px",
+        }}
       >
         {snackbar.color === "success" ? "Task Added!" : "Task Removed!"}
       </Snackbar>
@@ -139,7 +142,7 @@ function TodoList({ tasks, input }) {
     return (
       <ul className='todo_list flex_col_start'>
         <SnackbarAlert />
-        {tasks.map((task) => (
+        {sortedTasks.map((task) => (
           <li key={task.id} className='item flex_between'>
             <Checkbox
               sx={{ marginRight: "6px" }}

@@ -13,7 +13,7 @@ import {
 import { useAuthContext } from "./contexts/AuthContext";
 
 function useDB() {
-  const { user } = useAuthContext(); // fetching from auth.js
+  const { user } = useAuthContext(); // importing from auth.js
 
   const [ongoingTasks, setOngoingTasks] = useState([]); // ongoing tasks state
   const [completedTasks, setCompletedTasks] = useState([]); // completed tasks state
@@ -88,8 +88,9 @@ function useDB() {
   useEffect(() => {
     if (!user) return;
 
+    //fetching status
     setTaskLoading(true);
-    let ongoingFetched = false; //fetching status
+    let ongoingFetched = false;
     let completedFetched = false;
 
     const q_ongoing = getOngoingTasksQuery(user.uid); // fetching uncompleted tasks
