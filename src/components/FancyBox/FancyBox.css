@@ -28,11 +28,12 @@
   text-decoration: line-through;
 }
 .fancy_box .tasks {
-  list-style-type: disc;
-  -webkit-list-style-type: disc;
-  list-style-position: outside;
+  list-style: disc outside;
   margin-left: 18px;
   line-height: 1.2;
+}
+.fancy_box .tasks li {
+  display: list-item;
 }
 .fancy_box .tasks p {
   opacity: 1;
