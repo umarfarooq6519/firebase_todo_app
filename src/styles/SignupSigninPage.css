@@ -1,23 +1,25 @@
-.signup_page {
+/* ######### Signup Signin Page Styling ######### */
+
+.signup_page,
+.signin_page {
   padding: 5px;
   display: grid;
   justify-content: center;
 }
-
-.signup_page .content p {
+.signup_page .content p,
+.signin_page .content p {
   margin-top: 6px;
 }
-
 .signup_page .wrapper .continue_btn {
   padding-top: 10px;
 }
-
+.signup_page .wrapper .error_msg .icon,
 .signin_page .wrapper .error_msg .icon {
   height: 100%;
   width: var(--global-icon-base);
 }
-
-.signup_page .login_form {
+.signup_page .login_form,
+.signin_page .login_form {
   margin-top: 26px;
   display: flex;
   flex-direction: column;
@@ -25,18 +27,16 @@
   width: 100%;
   gap: 12px;
 }
-
-.signup_page .wrapper .divider {
+.signup_page .wrapper .divider,
+.signin_page .wrapper .divider {
   text-align: center;
 }
-
 .login_link {
   margin-top: 20px;
+  opacity: 1;
   color: var(--global-text-color);
   text-align: center;
 }
-
 .login_link a {
-  opacity: 1;
-  padding-left: 4px;
+  margin-left: 4px;
 }

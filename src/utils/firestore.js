@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { db } from "./firebase";
+import { db } from "../firebase";
 import {
   collection,
   doc,
@@ -10,14 +10,15 @@ import {
   onSnapshot,
   deleteDoc,
 } from "firebase/firestore";
-import { useAuthContext } from "./contexts/AuthContext";
+import { useAuthContext } from "../contexts/AuthContext";
 
 function useDB() {
   const { user } = useAuthContext(); // importing from auth.js
 
-  const [ongoingTasks, setOngoingTasks] = useState([]); // ongoing tasks state
-  const [completedTasks, setCompletedTasks] = useState([]); // completed tasks state
-  const [taskLoading, setTaskLoading] = useState(false); // loading state
+  // state hook variables
+  const [ongoingTasks, setOngoingTasks] = useState([]);
+  const [completedTasks, setCompletedTasks] = useState([]);
+  const [taskLoading, setTaskLoading] = useState(false);
 
   const getOngoingTasksQuery = (userID) => {
     // query for fetching ongoing tasks

@@ -1,0 +1,19 @@
+.progress_box {
+  max-width: 100%;
+  height: 150px;
+  padding: 8px;
+  border-radius: var(--global-radius-base);
+  border: 1px solid var(--global-text-color);
+}
+.progress_box .progress h3 {
+  max-width: 180px;
+}
+.progress_box .progress .text {
+  max-width: 230px;
+  margin-top: 2px;
+}
+.progress_box .heading .date .icon {
+  width: var(--global-icon-xs);
+  opacity: 0.9;
+  margin-right: 2px;
+}

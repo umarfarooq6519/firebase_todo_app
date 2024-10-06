@@ -1,0 +1,71 @@
+.todo_list {
+  text-decoration: none;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  gap: 14px;
+}
+.todo_list .item {
+  width: 100%;
+  height: fit-content;
+  line-height: 1.2;
+  padding: 5px 10px;
+  text-align: start;
+  background-color: var(--global-bg-color);
+  color: var(--global-text-color);
+  font-size: var(--font-base-size);
+  border: 1px solid currentColor;
+  border-radius: 12px;
+  outline: none;
+}
+.todo_list .task {
+  width: 100%;
+}
+.todo_list .task .task_title {
+  width: 250px;
+  font-weight: var(--font-weight-semibold);
+  /* Enable horizontal scrolling */
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.todo_list .task .task_title::-webkit-scrollbar {
+  display: none;
+}
+.todo_list .task .task_desc {
+  font-weight: var(--font-weight-light);
+  opacity: 0.8;
+}
+.todo_list .title {
+  position: relative;
+}
+.todo_list .due_date {
+  position: absolute;
+  width: fit-content;
+  background-color: var(--global-bg-color);
+  font-size: var(--font-xs-size);
+  opacity: 1;
+  padding: 0px 4px;
+  right: -20px;
+  bottom: 16px;
+}
+.todo_list .due_date .icon {
+  width: var(--global-icon-xs);
+  margin-right: 2px;
+}
+.todo_list .item .text::-webkit-scrollbar {
+  display: none; /* Hide on Chrome, Safari, and Opera */
+}
+.menu_item .bin_icon {
+  position: relative;
+  width: var(--global-icon-sm);
+  margin-right: -4px;
+  top: -1px;
+}
+.task_delete_menu {
+  color: var(--global-accent-red);
+}
+.create_task_wrapper {
+  padding-block: 8px;
+}

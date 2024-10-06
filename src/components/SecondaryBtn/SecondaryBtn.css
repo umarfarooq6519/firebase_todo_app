@@ -1,0 +1,7 @@
+/* ############ Create Task Btn ########### */
+.secondary_btn {
+  background-color: var(--global-text-color);
+}
+.secondary_btn .text {
+  color: var(--global-bg-color);
+}

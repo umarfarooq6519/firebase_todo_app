@@ -1,0 +1,6 @@
+.google_btn {
+  background-color: var(--global-bg-color);
+}
+.google_btn .icon {
+  margin-right: 8px;
+}

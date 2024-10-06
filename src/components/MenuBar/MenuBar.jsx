@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/AuthContext";
+import { useAuthContext } from "../../contexts/AuthContext";
 import { Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy";
 
-import UserAvatar from "./UserAvatar";
+import UserAvatar from "../UserAvatar/UserAvatar";
+
 import signout_icon from "/signout_icon.svg";
 import menu_icon from "/menu_icon.svg";
+import "./MenuBar.css";
 
-const DashboardHeader = () => {
+function MenuBar() {
   const navigate = useNavigate();
   const { user, handleLogout } = useAuthContext();
 
@@ -42,7 +44,6 @@ const DashboardHeader = () => {
       >
         <MenuItem variant='plain' color='plain'>
           <span className='menu_item'>
-            {/* <p className='email'>{email}</p> */}
             <p className='email'>{email}</p>
           </span>
         </MenuItem>
@@ -57,15 +58,12 @@ const DashboardHeader = () => {
   );
 
   return (
-    <div className='dashboard_header container flex_between'>
-      <div className='account flex_start'>
+    <div className='menu_bar container flex_between'>
+      <div className='content flex_start'>
         <UserAvatar user={user} />
 
-        <div className='acc_info flex_col_start'>
-          <h5 className='name'>
-            Hey, {f_name}
-            <span>👋</span>
-          </h5>
+        <div className='account flex_col_start'>
+          <h5 className='name'>Hey, {f_name}👋</h5>
           <p className='greetings'>What's on your mind today?</p>
         </div>
       </div>
@@ -73,6 +71,6 @@ const DashboardHeader = () => {
       <span className='dropdown'>{AccountMenu}</span>
     </div>
   );
-};
+}
 
-export default DashboardHeader;
+export default MenuBar;

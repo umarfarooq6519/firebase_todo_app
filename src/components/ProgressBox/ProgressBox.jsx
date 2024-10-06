@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
-import { useDBcontext } from "../contexts/DBContext";
+import { CircularProgress } from "@mui/joy";
+
+import { useDBcontext } from "../../contexts/DBContext";
 
 import date_icon from "/date_icon.svg";
-import { CircularProgress } from "@mui/joy";
+import "./ProgressBox.css";
 
 const ProgressBox = ({ text }) => {
   const { ongoingTasks, completedTasks } = useDBcontext();
@@ -49,7 +51,7 @@ const ProgressBox = ({ text }) => {
   }, []);
 
   return (
-    <div className='fancy_box_full flex_col_between shadow_sm'>
+    <div className='progress_box flex_col_between shadow_sm'>
       <span className='heading flex_between'>
         <h4>{text}</h4>
         <p className='date flex_center'>

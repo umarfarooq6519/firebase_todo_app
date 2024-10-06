@@ -1,55 +1,7 @@
-:root {
-  /* ##### font family variables ##### */
-  --font-family-body: "General Sans", sans-serif;
-  --font-family-heading: "Clash Display", sans-serif;
-
-  /* ##### font size variables ##### */
-  --font-xs-size: 13px;
-  --font-sm-size: 14px;
-  --font-base-size: 16px;
-  --font-lg-size: 18px;
-  --font-xl-size: 22px;
-
-  /* ##### font weight variables ##### */
-  --font-weight-extralight: 350;
-  --font-weight-light: 400;
-  --font-weight-normal: 450;
-  --font-weight-medium: 500;
-  --font-weight-semibold: 550;
-  --font-weight-bold: 600;
-  --font-weight-extrabold: 650;
-
-  /* theme color variables */
-  --global-bg-color: #ffffff;
-  --global-text-color: #222222;
-  --global-accent-green: #d0e9bc;
-  --global-accent-green-rgb: 208, 233, 188;
-  --global-accent-red: #7d1212;
-  --global-accent-purple: #e5d9f2;
-  /* some other choice I had > c1d8c3 fff5e4 */
-
-  /* global border radius */
-  --global-radius-sm: 8px;
-  --global-radius-base: 12px;
-  --global-radius-lg: 16px;
-
-  /* global icon size */
-  --global-icon-xs: 18px;
-  --global-icon-sm: 20px;
-  --global-icon-base: 22px;
-  --global-icon-lg: 24px;
-  --global-icon-xl: 28px;
-  --global-icon-2xl: 32px;
-
-  /* global shadows */
-  --global-shadow-sm: 0 0 6px 0 rgba(0, 0, 0, 0.15);
-  --global-shadow-base: 0 0 8px 1px rgba(0, 0, 0, 0.15);
-  --global-shadow-lg: 0 0 10px 2px rgba(0, 0, 0, 0.15);
-
-  /* global containers */
-  --global-container-sm: 340px;
-  --global-container-base: 370px;
-}
+@import "./styles/variables.css"; /* global variables */
+@import "./styles/SignupSigninPage.css";
+@import "./styles/DashboardPage.css";
+@import "./styles/TaskPages.css";
 
 html {
   color-scheme: light dark;
@@ -58,16 +10,13 @@ html {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   font-family: var(--font-family-body);
   font-size: var(--font-base-size);
 }
-
 body {
   color: var(--global-text-color);
   background-color: var(--global-bg-color);
@@ -86,54 +35,49 @@ p {
   color: var(--global-text-color);
   opacity: 0.7;
 }
-
 h1 {
   font-size: 32px;
   line-height: 30px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
 }
-
 h2 {
   font-size: 28px;
   line-height: 28px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-bold);
 }
-
 h3 {
   font-size: 26px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 24px;
 }
-
 h4 {
   font-size: 20px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 21px;
 }
-
 h5 {
   font-size: 16px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-semibold);
   line-height: 20px;
 }
-
 h6 {
   font-size: 15px;
   font-family: var(--font-family-heading);
   font-weight: var(--font-weight-medium);
   line-height: 20px;
 }
-
 a {
   color: currentColor;
   font-weight: var(--font-weight-normal);
 }
-
+.no_underline_link {
+  text-decoration: none;
+}
 label {
   font-weight: var(--font-weight-medium);
   font-size: var(--font-base-size);
@@ -141,20 +85,19 @@ label {
   padding: 0 3px;
   line-height: 2em;
 }
-
 input {
   width: 100%;
   height: 45px;
   padding: 0 15px;
   text-align: start;
   color: var(--global-text-color);
+  background-color: transparent;
   font-weight: var(--font-weight-normal);
   font-size: var(--font-base-size);
   border: 1px solid currentColor;
   /* border-bottom: 5px solid currentColor; */
-  border-radius: 12px;
+  border-radius: var(--global-radius-base);
   outline: none;
-  background-color: transparent;
 }
 textarea {
   width: 100%;
@@ -220,17 +163,8 @@ textarea {
 }
 
 .icon {
-  width: 1.5rem;
+  width: var(--global-icon-base);
   height: 100%;
-  /* margin-right: 8px; */
-}
-
-.divider {
-  padding: 16px 0;
-}
-
-.loading {
-  gap: 8px;
 }
 
 /* Disabled button styles */
@@ -244,6 +178,27 @@ button:disabled {
   gap: 4px;
 }
 
+/* global button styling */
+.btn {
+  height: 45px;
+  width: 100%;
+  border-radius: var(--global-radius-base);
+  border: 1px solid var(--global-text-color);
+  color: currentColor;
+  cursor: pointer;
+  text-decoration: none;
+}
+.btn .text {
+  font-family: var(--font-family-heading);
+  font-weight: var(--font-weight-medium);
+  font-size: var(--font-sm-size);
+}
+.btn .icon {
+  width: var(--global-icon-sm);
+  height: 100%;
+  margin-right: 4px;
+}
+
 /* ############ shadow variables ############ */
 .shadow_sm {
   box-shadow: var(--global-shadow-sm);
@@ -255,76 +210,22 @@ button:disabled {
   box-shadow: var(--global-shadow-lg);
 }
 
-/* ########### Fancy Button ############ */
-
-.fancy_button {
-  height: 45px;
-  width: 100%;
-  border: 1px solid var(--global-text-color);
-  border-radius: 12px;
-  background-color: transparent;
-  cursor: pointer;
-  color: currentColor;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  text-decoration: none;
-  font-size: var(--font-sm-size);
-  font-weight: var(--font-weight-medium);
-}
-
 /* ################ Buttons ################  */
-.primary_btn,
-.secondary_btn,
-.google_btn {
+
+.secondary_btn {
   height: 45px;
   width: 100%;
-  border-radius: 12px !important;
-  font-family: var(--font-family-body) !important;
-  font-weight: var(--font-weight-normal) !important;
-  font-size: var(--font-sm-size);
-  border: 1px solid var(--global-text-color) !important;
+  border-radius: var(--global-radius-base);
+  border: 1px solid var(--global-text-color);
   line-height: 10px;
   background-color: inherit;
   color: currentColor !important;
   text-decoration: none;
   cursor: pointer;
 }
-.primary_btn .text,
-.secondary_btn .text,
-.google_btn .text {
-  font-size: var(--font-sm-size);
-  padding-right: 8px;
-}
-.primary_btn .icon,
-.secondary_btn .icon {
-  width: var(--global-icon-base);
-  height: 100%;
-  margin-right: 4px;
-}
-.google_btn .icon {
-  width: var(--global-icon-sm);
-  height: 100%;
-  margin-right: 6px;
-}
 
 /* ################ Dashboard Header Component ################ */
-.dashboard_header .account {
-  width: 100%;
-  gap: 6px;
-  font-weight: var(--font-weight-semibold);
-}
-.dashboard_header .account .greetings {
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-xs-size);
-}
-.dashboard_header .account .avatar {
-  border: 1px solid currentColor;
-}
-.dashboard_header .icon {
-  width: var(--global-icon-xl);
-  height: 100%;
-}
+
 /* ################ Dashboard Menu Item ################ */
 .menu_item {
   width: 100%;
@@ -343,79 +244,6 @@ button:disabled {
   margin-top: 2px;
 }
 /* ################ Todo List ################ */
-.todo_list {
-  text-decoration: none;
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  gap: 18px;
-}
-.todo_list .item {
-  width: 100%;
-  height: fit-content;
-  line-height: 1.2;
-  padding: 8px;
-  text-align: start;
-  color: var(--global-text-color);
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-base-size);
-  border: 1px solid currentColor;
-  border-bottom: 5px solid currentColor;
-  border-radius: 12px;
-  outline: none;
-  background-color: transparent;
-}
-.todo_list .task {
-  width: 100%;
-  /* border: 1px solid; */
-}
-.todo_list .task .task_title {
-  width: 250px;
-  /* border: 1px solid; */
-  font-weight: var(--font-weight-semibold);
-  /* Enable horizontal scrolling */
-  overflow-x: auto;
-  white-space: nowrap;
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
-}
-.todo_list .task .task_title::-webkit-scrollbar {
-  display: none; /* Hide on Chrome Safari Opera */
-}
-.todo_list .task .task_desc {
-  /* border: 1px solid; */
-  font-weight: var(--font-weight-light);
-  opacity: 0.8;
-}
-.todo_list .title {
-  position: relative;
-}
-.todo_list .due_date {
-  position: absolute;
-  width: fit-content;
-  background-color: var(--global-bg-color);
-  font-size: var(--font-xs-size);
-  opacity: 1;
-  padding: 0px 3px;
-  right: -20px;
-  bottom: 18px;
-}
-.todo_list .due_date .icon {
-  width: var(--global-icon-xs);
-  margin-right: 2px;
-}
-.todo_list .item .text::-webkit-scrollbar {
-  display: none; /* Hide on Chrome, Safari, and Opera */
-}
-.menu_item .bin_icon {
-  position: relative;
-  width: var(--global-icon-sm);
-  margin-right: -4px !important;
-  top: -1px;
-}
-.task_delete_menu {
-  color: var(--global-accent-red) !important;
-}
 
 /* ############## Todo Form ############ */
 .todo_form {
@@ -461,127 +289,9 @@ button:disabled {
   cursor: pointer; /* Optional: make it clickable */
 }
 
-/* ########### Fancy Box Full ############ */
-.fancy_box_full {
-  max-width: 100%;
-  height: 150px;
-  padding: 8px;
-  border-radius: var(--global-radius-base);
-  /* cursor: pointer; */
-  /* or ongoing tasks */
-  border: 1px solid var(--global-text-color);
-  /* background: var(--global-accent-green); */
-  margin-bottom: 8px;
-}
-.fancy_box_full .progress h3 {
-  max-width: 180px;
-  /* border: 1px solid; */
-}
-.fancy_box_full .progress .text {
-  max-width: 230px;
-  margin-top: 2px;
-}
-.fancy_box_full .heading .date .icon {
-  width: var(--global-icon-xs);
-  opacity: 0.9;
-  margin-right: 2px;
-}
-
 /* ############ Fancy Box ############# */
-.fancy_box {
-  max-width: 100%;
-  height: 150px;
-  padding: 8px;
-  border-radius: var(--global-radius-base);
-  cursor: pointer;
-  /* or ongoing tasks */
-  border: 1px solid var(--global-text-color);
-  background: var(--global-accent-green);
-}
-.fancy_box .heading .icon {
-  width: var(--global-icon-sm);
-}
-/* completed tasks box */
-.fancy_box:nth-child(2) {
-  background: var(--global-text-color);
-  color: var(--global-bg-color);
-  border: 1px solid var(--global-accent-green);
-}
-.fancy_box:nth-child(2) p {
-  color: var(--global-bg-color);
-}
-.fancy_box:nth-child(2) .arrow .icon {
-  /* dark theme arrow for completed tasks box */
-  content: url("/arrow_right_dark.svg");
-}
-.completed_task {
-  text-decoration: line-through;
-}
-.fancy_box .tasks {
-  margin-bottom: 2px;
-  list-style-type: circle;
-  -webkit-list-style-type: circle;
-  list-style-position: outside;
-  margin-left: 18px;
-  line-height: 1.2;
-}
-.fancy_box .tasks p {
-  /* to prevent overflowing */
-  width: 100%;
-  opacity: 1;
-  max-width: 135px;
-  margin-left: -6px;
-  font-size: var(--font-xs-size);
-  font-weight: var(--font-weight-light);
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
-/* My Notes Box */
-.fancy_box:nth-child(3) {
-  background-color: var(--global-accent-purple);
-  height: fit-content;
-  width: 100%;
-  gap: 3px;
-}
-/* New Task Box */
-.fancy_box:nth-child(4) {
-  background: var(--global-bg-color);
-  height: fit-content;
-  width: 100%;
-  gap: 3px;
-}
-.fancy_box:nth-child(3) .arrow,
-.fancy_box:nth-child(4) .arrow {
-  width: fit-content !important;
-}
-.fancy_box .icon {
-  margin-left: 4px;
-  width: var(--global-icon-sm);
-}
-.fancy_box .arrow {
-  width: 100% !important;
-  display: flex;
-  justify-content: end;
-  height: 20px;
-}
 
 /* ################ New Task Button ############## */
-.new_task_btn {
-  margin-block: 10px;
-  display: flex;
-  border: none;
-  border-radius: var(--global-radius-lg);
-  background-color: var(--global-text-color);
-  color: var(--global-bg-color);
-}
-.new_task_btn .icon {
-  width: var(--global-icon-sm);
-  margin-right: 4px;
-}
-.new_task_btn h5 {
-  font-weight: var(--font-weight-medium);
-}
 
 /* ########### Responsive Media Screen ############# */
 

@@ -1,18 +1,12 @@
-import { Button } from "@mui/joy";
 import google_icon from "/google_icon.svg";
+import "./GoogleBtn.css";
 
 const GoogleBtn = ({ onClick }) => {
   return (
-    <Button
-      type='button'
-      className='google_btn'
-      onClick={onClick}
-      variant='outline'
-      color='neutral'
-    >
+    <button type='button' className='btn google_btn flex_center' onClick={onClick}>
       <img src={google_icon} alt='' className='icon' />
       <span className='text'>Continue with Google</span>
-    </Button>
+    </button>
   );
 };
 

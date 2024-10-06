@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import useDB from "../firestore";
+import useDB from "../utils/firestore";
 
 const DBcontext = createContext();
 

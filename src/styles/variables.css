@@ -1,0 +1,52 @@
+/* ############ Global variables ############## */
+:root {
+  /* font family variables */
+  --font-family-body: "General Sans", sans-serif;
+  --font-family-heading: "Clash Display", sans-serif;
+
+  /*  font size variables  */
+  --font-xs-size: 13px;
+  --font-sm-size: 14px;
+  --font-base-size: 16px;
+  --font-lg-size: 18px;
+  --font-xl-size: 22px;
+
+  /*  font weight variables  */
+  --font-weight-extralight: 350;
+  --font-weight-light: 400;
+  --font-weight-normal: 450;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 550;
+  --font-weight-bold: 600;
+  --font-weight-extrabold: 650;
+
+  /* theme color variables */
+  --global-bg-color: #ffffff;
+  --global-text-color: #222222;
+  --global-accent-green: #d0e9bc;
+  --global-accent-green-rgb: 208, 233, 188;
+  --global-accent-red: #7d1212;
+  --global-accent-purple: #e5d9f2;
+
+  /* global border radius */
+  --global-radius-sm: 8px;
+  --global-radius-base: 12px;
+  --global-radius-lg: 16px;
+
+  /* global icon size */
+  --global-icon-xs: 18px;
+  --global-icon-sm: 20px;
+  --global-icon-base: 22px;
+  --global-icon-lg: 24px;
+  --global-icon-xl: 28px;
+  --global-icon-2xl: 32px;
+
+  /* global shadows */
+  --global-shadow-sm: 0 0 6px 0 rgba(0, 0, 0, 0.15);
+  --global-shadow-base: 0 0 8px 1px rgba(0, 0, 0, 0.15);
+  --global-shadow-lg: 0 0 10px 2px rgba(0, 0, 0, 0.15);
+
+  /* global containers */
+  --global-container-sm: 340px;
+  --global-container-base: 370px;
+}

@@ -1,0 +1,17 @@
+/* ########### Menu Bar ########### */
+.menu_bar .content {
+  width: 100%;
+  gap: 6px;
+  font-weight: var(--font-weight-semibold);
+}
+.menu_bar .content .greetings {
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-xs-size);
+}
+.menu_bar .content .avatar {
+  border: 1px solid currentColor;
+}
+.menu_bar .icon {
+  width: var(--global-icon-xl);
+  height: 100%;
+}

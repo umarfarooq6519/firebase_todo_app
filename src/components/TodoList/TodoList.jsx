@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { useDBcontext } from "../contexts/DBContext";
-import { Timestamp } from "firebase/firestore";
+import { useDBcontext } from "../../contexts/DBContext";
 import {
   Dropdown,
   MenuButton,
@@ -11,10 +10,11 @@ import {
   Snackbar,
 } from "@mui/joy";
 
-import NewTask from "./NewTask";
+import CreateTask from "../CreateTask/CreateTask";
 import vertical_menu from "/vertical_menu.svg";
 import bin_icon from "/bin_icon.svg";
 import date_icon from "/date_icon.svg";
+import "./TodoList.css";
 
 function TodoList({ tasks, input }) {
   const [snackbar, setSnackbar] = useState({ open: false, color: "", msg: "" });
@@ -43,21 +43,6 @@ function TodoList({ tasks, input }) {
   const handleTaskCompletion = async (task) => {
     // toggle task complete state (boolean)
     await updateTaskCompleted(task);
-  };
-
-  const formatTimestamp = (timestamp) => {
-    // formating firestore timestamp to display
-    if (timestamp instanceof Timestamp) {
-      return timestamp.toDate().toLocaleString("en-US", {
-        year: "numeric",
-        month: "2-digit",
-        day: "2-digit",
-        hour: "2-digit",
-        minute: "2-digit",
-        hour12: true, // use 12-hour format
-      });
-    }
-    return null;
   };
 
   const ItemMenu = (task) => {
@@ -176,7 +161,11 @@ function TodoList({ tasks, input }) {
   return (
     <>
       {tasks.length == 0 ? emptyTasks : <TasksList />}
-      {input && <NewTask setSnackbar={setSnackbar} />}
+      {input && (
+        <div className='create_task_wrapper'>
+          <CreateTask setSnackbar={setSnackbar} />
+        </div>
+      )}
     </>
   );
 }

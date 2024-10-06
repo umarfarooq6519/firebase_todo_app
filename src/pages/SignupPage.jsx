@@ -4,22 +4,19 @@ import { Divider } from "@mui/joy";
 
 import { useAuthContext } from "../contexts/AuthContext";
 
-import EmailPassInput from "../components/EmailPassInput";
-import PrimaryBtn from "../components/PrimaryBtn";
-import GoogleBtn from "../components/GoogleBtn";
+import Loading from "../components/Loading/Loading";
+import EmailPassInput from "../components/EmailPassInput/EmailPassInput";
+import PrimaryBtn from "../components/PrimaryBtn/PrimaryBtn";
+import GoogleBtn from "../components/GoogleBtn/GoogleBtn";
 
 import warning_icon from "/warning_icon.svg";
 import signin_icon from "/signin_icon.svg";
-import Loading from "../components/Loading";
-
-import "../styles/SignupPage.css";
 
 // ###############################
 
 function SignupPage() {
-  // access authContext
-  const { user, error, setError, loading, googleSignin, emailSignup } =
-    useAuthContext();
+  const { error, setError, loading, googleSignin, emailSignup } =
+    useAuthContext(); // access auth.js variables
 
   const navigate = useNavigate();
 
@@ -49,6 +46,7 @@ function SignupPage() {
     // function to handle google signin
     try {
       const result = await googleSignin();
+      // go to dashboard if success
       if (result) navigate("/dashboard");
     } catch (e) {
       console.log(e);
@@ -61,7 +59,6 @@ function SignupPage() {
   }, []);
 
   if (loading) {
-    // return spinner if loading
     return <Loading />;
   }
 
@@ -88,6 +85,7 @@ function SignupPage() {
             required
           />
 
+          {/* email & password component */}
           <EmailPassInput
             email={email}
             setEmail={setEmail}
@@ -113,7 +111,7 @@ function SignupPage() {
             marginBlock: "12px",
           }}
         >
-          OR
+          Or
         </Divider>
 
         <GoogleBtn onClick={handleGoogleSignin} />

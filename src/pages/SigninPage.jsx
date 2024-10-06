@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/AuthContext";
-import "../styles/SigninPage.css";
 import { Divider } from "@mui/joy";
-import Loading from "../components/Loading";
 
-import EmailPassInput from "../components/EmailPassInput";
-import PrimaryBtn from "../components/PrimaryBtn";
-import GoogleBtn from "../components/GoogleBtn";
+import { useAuthContext } from "../contexts/AuthContext";
+
+import Loading from "../components/Loading/Loading";
+import EmailPassInput from "../components/EmailPassInput/EmailPassInput";
+import PrimaryBtn from "../components/PrimaryBtn/PrimaryBtn";
+import GoogleBtn from "../components/GoogleBtn/GoogleBtn";
+
 import warning_icon from "/warning_icon.svg";
 import signin_icon from "/signin_icon.svg";
 
 function SigninPage() {
-  // access authContext
-  const { user, error, setError, loading, googleSignin, emailSignin } =
-    useAuthContext();
+  const { error, setError, loading, googleSignin, emailSignin } =
+    useAuthContext(); // access auth.js variables
 
   const navigate = useNavigate();
 
@@ -54,7 +54,6 @@ function SigninPage() {
   }, []);
 
   if (loading) {
-    // return spinner if loading
     return <Loading />;
   }
 
@@ -74,6 +73,7 @@ function SigninPage() {
 
       <div className='wrapper container'>
         <form onSubmit={handleEmailSignin} className='login_form'>
+          {/* email & password component */}
           <EmailPassInput
             email={email}
             setEmail={setEmail}
@@ -99,7 +99,7 @@ function SigninPage() {
             marginBlock: "12px",
           }}
         >
-          OR
+          Or
         </Divider>
 
         <GoogleBtn onClick={handleGoogleSignin} loading={loading} />

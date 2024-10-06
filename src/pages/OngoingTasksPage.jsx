@@ -1,12 +1,13 @@
 import { Link, useNavigate } from "react-router-dom";
-import { useAuthContext } from "../contexts/AuthContext";
-import { useDBcontext } from "../contexts/DBContext";
-import "../styles/OngoingTasksPage.css";
 import { Divider } from "@mui/joy";
 
-import DashboardHeader from "../components/DashboardHeader";
-import TodoList from "../components/TodoList";
-import Loading from "../components/Loading";
+import { useAuthContext } from "../contexts/AuthContext";
+import { useDBcontext } from "../contexts/DBContext";
+
+import Loading from "../components/Loading/Loading";
+import MenuBar from "../components/MenuBar/MenuBar";
+import TodoList from "../components/TodoList/TodoList";
+
 import arrow_left from "/arrow_left.svg";
 
 const OngoingTasksPage = () => {
@@ -27,7 +28,7 @@ const OngoingTasksPage = () => {
   return (
     <div className='ongoing_tasks_page container'>
       <div className='wrapper container flex_between'>
-        <DashboardHeader user={user} handleLogout={handleLogout} />
+        <MenuBar user={user} handleLogout={handleLogout} />
       </div>
 
       <Divider

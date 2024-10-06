@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalDialog, ModalClose } from "@mui/joy";
-import parseFormatDate from "../utils/dateUtils";
 
-import { useDBcontext } from "../contexts/DBContext";
+import { useDBcontext } from "../../contexts/DBContext";
+import parseFormatDate from "../../utils/dateUtils";
+
+import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
+import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
 import plus_icon from "/plus_icon.svg";
 
-function NewTask({ setSnackbar }) {
-  //importing DBcontext variables
-  const { addTask } = useDBcontext();
+function CreateTask({ setSnackbar }) {
+  const { addTask } = useDBcontext(); // using firestore.js variables
 
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -81,27 +83,19 @@ function NewTask({ setSnackbar }) {
               <h6 className='due_date'>Due Date: {dueDate}</h6>
             </span>
 
-            <button
-              type='submit'
-              className='fancy_button new_task_btn flex_center'
-            >
-              <h5 className='heading'>Create</h5>
-            </button>
+            <PrimaryBtn text='Submit' />
           </form>
         </ModalDialog>
       </Modal>
 
       {/* triggers the modal */}
-      <button
-        type='button'
+      <SecondaryBtn
+        text='Create Task'
         onClick={() => setModalOpen(!modalOpen)}
-        className='fancy_button new_task_btn'
-      >
-        <img src={plus_icon} className='icon' />
-        <h5 className='heading'>Create task</h5>
-      </button>
+        icon={<img src={plus_icon} className='icon' />}
+      />
     </>
   );
 }
 
-export default NewTask;
+export default CreateTask;
