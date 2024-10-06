@@ -28,18 +28,25 @@
   text-decoration: line-through;
 }
 .fancy_box .tasks {
-  list-style: disc outside;
+  list-style: none;
   margin-left: 18px;
   line-height: 1.2;
 }
+.fancy_box .tasks li::before {
+  position: relative;
+  content: "•"; /* Disc symbol */
+  left: -14px;
+  top: -4px;
+  color: currentColor; /* Adjust color if needed */
+}
 .fancy_box .tasks li {
-  display: list-item;
+  display: flex;
 }
 .fancy_box .tasks p {
   opacity: 1;
   width: 100%;
   max-width: 135px;
-  margin-left: -6px;
+  margin-left: -10px;
   font-size: var(--font-xs-size);
   font-weight: var(--font-weight-light);
   /* to prevent overflowing */
