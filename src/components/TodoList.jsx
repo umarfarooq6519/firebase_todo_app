@@ -11,46 +11,32 @@ import {
   Snackbar,
 } from "@mui/joy";
 
+import NewTask from "./NewTask";
 import vertical_menu from "/vertical_menu.svg";
-import send_icon from "/send_icon.svg";
 import bin_icon from "/bin_icon.svg";
+import date_icon from "/date_icon.svg";
 
 function TodoList({ tasks, input }) {
-  const [text, setText] = useState("");
-  const [snackbar, setSnackbar] = useState({ open: false, color: "" });
+  const [snackbar, setSnackbar] = useState({ open: false, color: "", msg: "" });
 
-  const { addTask, delTask, taskLoading, updateTaskCompleted } = useDBcontext();
+  const { delTask, taskLoading, updateTaskCompleted } = useDBcontext();
 
   const sortedTasks = tasks.sort((a, b) => {
-    const aTime = a.time.toDate();
-    const bTime = b.time.toDate();
+    const aTime = a.createdAt.toDate();
+    const bTime = b.createdAt.toDate();
     return bTime - aTime; // Sort by recent
   });
 
   // console.log(sortedTasks);
 
-  const handleAddTask = async (e) => {
-    // function to handle add task
-    e.preventDefault();
-    if (text.trim() === "") return; // if empty don't do anything
-    setSnackbar({ open: true, color: "success" });
-    let time = new Date();
-    setText("");
-    await addTask(text, time);
-
-    setTimeout(() => {
-      // Set snackbar to false after 1.5s
-      setSnackbar({ open: false, color: "" });
-    }, 1500);
-  };
   const handleDelTask = async (taskID) => {
     // function to handle delete task
-    setSnackbar({ open: true, color: "danger" });
+    setSnackbar({ open: true, color: "danger", msg: "Task Deleted!" });
     await delTask(taskID);
 
     setTimeout(() => {
       // Set snackbar to false after 1.5s
-      setSnackbar({ open: false, color: "" });
+      setSnackbar({ open: false, color: "", msg: "" });
     }, 1500);
   };
 
@@ -71,7 +57,7 @@ function TodoList({ tasks, input }) {
         hour12: true, // use 12-hour format
       });
     }
-    return "N/A";
+    return null;
   };
 
   const ItemMenu = (task) => {
@@ -133,7 +119,7 @@ function TodoList({ tasks, input }) {
           padding: "10px 20px",
         }}
       >
-        {snackbar.color === "success" ? "Task Added!" : "Task Removed!"}
+        {snackbar.msg}
       </Snackbar>
     );
   };
@@ -153,12 +139,31 @@ function TodoList({ tasks, input }) {
               onClick={() => handleTaskCompletion(task)}
               checked={task.completed}
             />
-            <span className='text'>
-              <span className={`${task.completed ? "completed_task" : ""}`}>
-                {task.text}
+            <div className='task flex_col_between'>
+              <span className='title flex_between'>
+                <span
+                  className={`task_title ${
+                    task.completed ? "completed_task" : ""
+                  }`}
+                >
+                  {task.title}
+                </span>
+                {task.due && (
+                  <p className='due_date flex_center'>
+                    <img src={date_icon} alt='' className='icon' />
+                    {task.due}
+                  </p>
+                )}
               </span>
-              <p className='time'>{formatTimestamp(task.time)}</p>
-            </span>
+              <span
+                className={`task_desc ${
+                  task.completed ? "completed_task" : ""
+                }`}
+              >
+                {task.desc}
+              </span>
+            </div>
+
             <ItemMenu task={task} />
           </li>
         ))}
@@ -171,24 +176,7 @@ function TodoList({ tasks, input }) {
   return (
     <>
       {tasks.length == 0 ? emptyTasks : <TasksList />}
-      {input && (
-        <form onSubmit={handleAddTask} className='todo_form'>
-          <div className='input_container'>
-            <input
-              type='text'
-              disabled={taskLoading}
-              onChange={(e) => setText(e.target.value)}
-              value={text}
-              className='input shadow_sm'
-              placeholder='Add new task...'
-            />
-            <button type='submit' className='icon_wrapper'>
-              <img src={send_icon} alt='send' className='icon' />
-            </button>
-          </div>
-          {/* <NewTask /> */}
-        </form>
-      )}
+      {input && <NewTask setSnackbar={setSnackbar} />}
     </>
   );
 }

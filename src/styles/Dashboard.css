@@ -10,7 +10,7 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 8px;
 }
-.dashboard .content .heading {
+.dashboard .content h3 {
   margin-bottom: 18px;
   gap: 6px;
 }

@@ -151,7 +151,23 @@ input {
   font-weight: var(--font-weight-normal);
   font-size: var(--font-base-size);
   border: 1px solid currentColor;
-  border-bottom: 5px solid currentColor;
+  /* border-bottom: 5px solid currentColor; */
+  border-radius: 12px;
+  outline: none;
+  background-color: transparent;
+}
+textarea {
+  width: 100%;
+  max-width: 100%;
+  max-height: 200px;
+  min-width: fit-content;
+  padding: 5px 10px;
+  text-align: start;
+  color: var(--global-text-color);
+  font-weight: var(--font-weight-normal);
+  font-size: var(--font-base-size);
+  border: 1px solid currentColor;
+  /* border-bottom: 5px solid currentColor; */
   border-radius: 12px;
   outline: none;
   background-color: transparent;
@@ -170,14 +186,18 @@ input {
   align-items: center;
   justify-content: center;
 }
-
 .flex_start {
   /* width: 100%; */
   display: flex;
   align-items: center;
   justify-content: start;
 }
-
+.flex_end {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
 .flex_between {
   width: 100%;
   display: flex;
@@ -195,7 +215,6 @@ input {
 .flex_col_between {
   /* width: 100%; */
   display: flex;
-  border: 1px solid;
   flex-direction: column;
   justify-content: space-between;
 }
@@ -329,7 +348,7 @@ button:disabled {
   list-style: none;
   padding: 0;
   margin: 0;
-  gap: 10px;
+  gap: 18px;
 }
 .todo_list .item {
   width: 100%;
@@ -346,22 +365,47 @@ button:disabled {
   outline: none;
   background-color: transparent;
 }
-.todo_list .item .text {
-  /* for scrolling tasks */
+.todo_list .task {
   width: 100%;
-  /* overflow-y: hidden;
-  overflow-x: scroll;
-  white-space: nowrap;
-  margin-right: 4px;
-  scrollbar-width: none;
-  -ms-overflow-style: none; */
+  /* border: 1px solid; */
 }
-.todo_list .time {
+.todo_list .task .task_title {
+  width: 250px;
+  /* border: 1px solid; */
+  font-weight: var(--font-weight-semibold);
+  /* Enable horizontal scrolling */
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+.todo_list .task .task_title::-webkit-scrollbar {
+  display: none; /* Hide on Chrome Safari Opera */
+}
+.todo_list .task .task_desc {
+  /* border: 1px solid; */
+  font-weight: var(--font-weight-light);
+  opacity: 0.8;
+}
+.todo_list .title {
+  position: relative;
+}
+.todo_list .due_date {
+  position: absolute;
+  width: fit-content;
+  background-color: var(--global-bg-color);
   font-size: var(--font-xs-size);
-  margin-top: 2px;
+  opacity: 1;
+  padding: 0px 3px;
+  right: -20px;
+  bottom: 18px;
+}
+.todo_list .due_date .icon {
+  width: var(--global-icon-xs);
+  margin-right: 2px;
 }
 .todo_list .item .text::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, and Opera */
+  display: none; /* Hide on Chrome, Safari, and Opera */
 }
 .menu_item .bin_icon {
   position: relative;
@@ -375,8 +419,8 @@ button:disabled {
 
 /* ############## Todo Form ############ */
 .todo_form {
-  margin-top: 20px;
-  gap: 10px;
+  height: fit-content;
+  gap: 4px;
 }
 .todo_form .input_container {
   position: relative;
@@ -384,9 +428,8 @@ button:disabled {
 }
 .todo_form .input {
   width: 100%;
-  padding-right: 40px; /* Add padding to make space for the icon */
+  padding-right: 40px;
 }
-
 .todo_form .icon_wrapper {
   position: absolute;
   background-color: transparent;
@@ -394,6 +437,24 @@ button:disabled {
   right: 10px; /* Adjust spacing */
   top: 50%;
   transform: translateY(-50%); /* Center vertically */
+}
+.todo_form label {
+  position: relative;
+  top: 3px;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-base-size);
+  font-weight: var(--font-weight-semibold);
+}
+.todo_form .modal_heading {
+  position: relative;
+  bottom: 3px;
+}
+.todo_form .form_item .desc {
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+.todo_form .form_item .desc::-webkit-scrollbar {
+  display: none; /* Hide on Chrome Safari Opera */
 }
 .todo_form .icon {
   width: var(--global-icon-base);
@@ -508,6 +569,7 @@ button:disabled {
 /* ################ New Task Button ############## */
 .new_task_btn {
   margin-block: 10px;
+  display: flex;
   border: none;
   border-radius: var(--global-radius-lg);
   background-color: var(--global-text-color);
@@ -530,5 +592,8 @@ button:disabled {
   }
   .fancy_box .tasks p {
     max-width: 155px;
+  }
+  .todo_list .task .task_title {
+    width: 300px;
   }
 }

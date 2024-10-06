@@ -46,13 +46,15 @@ function useDB() {
     if (ongoing && completed) setTaskLoading(false); //reset loading to false
   };
 
-  const addTask = async (text, time) => {
+  const addTask = async (title, desc, due, createdAt) => {
     // function for adding tasks to firestore
     try {
       const docRef = await addDoc(collection(db, "tasks"), {
         user_id: user.uid,
-        text,
-        time,
+        title,
+        desc,
+        due,
+        createdAt,
         completed: false,
       });
       console.log("task added with id ", docRef.id);

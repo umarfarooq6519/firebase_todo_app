@@ -21,9 +21,9 @@ const FancyBox = ({ text, handleClick, tasks }) => {
       </h4>
       <ul className='tasks'>
         {tasksList.slice(0, 3).map((task) => (
-          <li key={task.id} className="">
-            <p className={task.completed ? "completed_task" : ""}>
-              {task.text}
+          <li key={task.id} className=''>
+            <p className={`${task.completed ? "completed_task" : ""}`}>
+              {task.title}
             </p>
           </li>
         ))}

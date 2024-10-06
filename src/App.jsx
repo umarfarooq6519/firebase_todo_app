@@ -1,5 +1,7 @@
-// TODO: add task delete option and notes functionality
-// 82% at 07:23 am
+// TODO
+// 1. add task title, description and due date.
+// 2. add shared tasks option
+// 3. add framer motion animations
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // following are the only routes needed for this app.
