@@ -15,30 +15,11 @@ const CompletedTasksPage = () => {
   const { completedTasks } = useDBcontext();
   const navigate = useNavigate();
 
-  if (loading) {
-    return <Loading />;
-  }
-
-  if (!user) {
-    navigate("/");
-  }
-
   //   ############ Completed Tasks Page ############
 
   return (
-    <div className='completed_tasks_page container'>
-      <div className='wrapper container flex_between'>
-        <MenuBar user={user} handleLogout={handleLogout} />
-      </div>
-
-      <Divider
-        orientation='horizontal'
-        sx={{
-          marginBlock: "12px",
-        }}
-      />
-
-      <span className='tasks_heading flex_start'>
+    <div className='completed_tasks container'>
+      <span className='wrapper flex_start'>
         <Link to='/dashboard'>
           <img src={arrow_left} alt='Go back' className='icon' />
         </Link>

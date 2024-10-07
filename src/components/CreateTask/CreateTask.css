@@ -1,0 +1,42 @@
+.todo_form {
+  height: fit-content;
+  gap: 4px;
+}
+.todo_form .input_container {
+  position: relative;
+  width: 100%;
+}
+.todo_form .input {
+  width: 100%;
+  padding-right: 40px;
+}
+.todo_form .icon_wrapper {
+  position: absolute;
+  background-color: transparent;
+  border: none;
+  right: 10px; /* Adjust spacing */
+  top: 50%;
+  transform: translateY(-50%); /* Center vertically */
+}
+.todo_form label {
+  position: relative;
+  top: 3px;
+  font-family: var(--font-family-heading);
+  font-size: var(--font-base-size);
+  font-weight: var(--font-weight-semibold);
+}
+.todo_form .modal_heading {
+  position: relative;
+  bottom: 3px;
+}
+.todo_form .form_item .desc {
+  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
+  scrollbar-width: none; /* Hide scrollbar on Firefox */
+}
+.todo_form .form_item .desc::-webkit-scrollbar {
+  display: none; /* Hide on Chrome Safari Opera */
+}
+.todo_form .icon {
+  width: var(--global-icon-base);
+  cursor: pointer; /* Optional: make it clickable */
+}

@@ -8,6 +8,7 @@ import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
 import plus_icon from "/plus_icon.svg";
+import './CreateTask.css';
 
 function CreateTask({ setSnackbar }) {
   const { addTask } = useDBcontext(); // using firestore.js variables

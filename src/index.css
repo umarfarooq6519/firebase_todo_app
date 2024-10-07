@@ -2,6 +2,7 @@
 @import "./styles/SignupSigninPage.css";
 @import "./styles/DashboardPage.css";
 @import "./styles/TaskPages.css";
+@import "./styles/base.css";
 
 html {
   color-scheme: light dark;
@@ -29,100 +30,13 @@ body {
   align-items: center;
 }
 
-/* ################ Base Components ################ */
-p {
-  font-size: var(--font-sm-size);
-  color: var(--global-text-color);
-  opacity: 0.7;
-}
-h1 {
-  font-size: 32px;
-  line-height: 30px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-bold);
-}
-h2 {
-  font-size: 28px;
-  line-height: 28px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-bold);
-}
-h3 {
-  font-size: 26px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-semibold);
-  line-height: 24px;
-}
-h4 {
-  font-size: 20px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-semibold);
-  line-height: 21px;
-}
-h5 {
-  font-size: 16px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-semibold);
-  line-height: 20px;
-}
-h6 {
-  font-size: 15px;
-  font-family: var(--font-family-heading);
-  font-weight: var(--font-weight-medium);
-  line-height: 20px;
-}
-a {
-  color: currentColor;
-  font-weight: var(--font-weight-normal);
-}
-.no_underline_link {
-  text-decoration: none;
-}
-label {
-  font-weight: var(--font-weight-medium);
-  font-size: var(--font-base-size);
-  text-align: start;
-  padding: 0 3px;
-  line-height: 2em;
-}
-input {
-  width: 100%;
-  height: 45px;
-  padding: 0 15px;
-  text-align: start;
-  color: var(--global-text-color);
-  background-color: transparent;
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-base-size);
-  border: 1px solid currentColor;
-  /* border-bottom: 5px solid currentColor; */
-  border-radius: var(--global-radius-base);
-  outline: none;
-}
-textarea {
-  width: 100%;
-  max-width: 100%;
-  max-height: 200px;
-  min-width: fit-content;
-  padding: 5px 10px;
-  text-align: start;
-  color: var(--global-text-color);
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-base-size);
-  border: 1px solid currentColor;
-  /* border-bottom: 5px solid currentColor; */
-  border-radius: 12px;
-  outline: none;
-  background-color: transparent;
-}
-
 /* ################ Container ################ */
 .container {
   min-width: 100%;
   width: var(--global-container-sm);
 }
 
-/* ######## Flex Styles ######### */
+/* ######## Global Flex ######### */
 .flex_center {
   /* width: 100%; */
   display: flex;
@@ -162,23 +76,25 @@ textarea {
   justify-content: space-between;
 }
 
+/* ############ Other ############ */
 .icon {
   width: var(--global-icon-base);
   height: 100%;
 }
-
 /* Disabled button styles */
 button:disabled {
-  cursor: not-allowed; /* Changes the cursor to indicate it's disabled */
-  opacity: 0.5; /* Optional: Makes the button look faded */
+  cursor: not-allowed;
+  opacity: 0.5;
 }
-
 .error_msg {
   color: red;
   gap: 4px;
 }
+.no_underline_link {
+  text-decoration: none;
+}
 
-/* global button styling */
+/* ############ Global Btn ############ */
 .btn {
   height: 45px;
   width: 100%;
@@ -199,7 +115,7 @@ button:disabled {
   margin-right: 4px;
 }
 
-/* ############ shadow variables ############ */
+/* ############ Global Shadow ############ */
 .shadow_sm {
   box-shadow: var(--global-shadow-sm);
 }
@@ -210,91 +126,7 @@ button:disabled {
   box-shadow: var(--global-shadow-lg);
 }
 
-/* ################ Buttons ################  */
-
-.secondary_btn {
-  height: 45px;
-  width: 100%;
-  border-radius: var(--global-radius-base);
-  border: 1px solid var(--global-text-color);
-  line-height: 10px;
-  background-color: inherit;
-  color: currentColor !important;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* ################ Dashboard Header Component ################ */
-
-/* ################ Dashboard Menu Item ################ */
-.menu_item {
-  width: 100%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  padding: 0 10px;
-  cursor: pointer;
-  color: var(--global-text-color);
-  background: transparent;
-  font-weight: var(--font-weight-normal);
-}
-.menu_item .icon {
-  margin-right: 4px;
-  margin-top: 2px;
-}
-/* ################ Todo List ################ */
-
-/* ############## Todo Form ############ */
-.todo_form {
-  height: fit-content;
-  gap: 4px;
-}
-.todo_form .input_container {
-  position: relative;
-  width: 100%;
-}
-.todo_form .input {
-  width: 100%;
-  padding-right: 40px;
-}
-.todo_form .icon_wrapper {
-  position: absolute;
-  background-color: transparent;
-  border: none;
-  right: 10px; /* Adjust spacing */
-  top: 50%;
-  transform: translateY(-50%); /* Center vertically */
-}
-.todo_form label {
-  position: relative;
-  top: 3px;
-  font-family: var(--font-family-heading);
-  font-size: var(--font-base-size);
-  font-weight: var(--font-weight-semibold);
-}
-.todo_form .modal_heading {
-  position: relative;
-  bottom: 3px;
-}
-.todo_form .form_item .desc {
-  -ms-overflow-style: none; /* Hide scrollbar on IE and Edge */
-  scrollbar-width: none; /* Hide scrollbar on Firefox */
-}
-.todo_form .form_item .desc::-webkit-scrollbar {
-  display: none; /* Hide on Chrome Safari Opera */
-}
-.todo_form .icon {
-  width: var(--global-icon-base);
-  cursor: pointer; /* Optional: make it clickable */
-}
-
-/* ############ Fancy Box ############# */
-
-/* ################ New Task Button ############## */
-
 /* ########### Responsive Media Screen ############# */
-
 @media screen and (min-width: 768px) {
   .container {
     min-width: 100%;

@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy";
+import { motion } from "framer-motion";
 
 import UserAvatar from "../UserAvatar/UserAvatar";
 
@@ -60,7 +61,14 @@ function MenuBar() {
   return (
     <div className='menu_bar container flex_between'>
       <div className='content flex_start'>
-        <UserAvatar user={user} />
+        <motion.span
+          className='avatar_wrapper'
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ delay: 0.2 }}
+        >
+          <UserAvatar user={user} />
+        </motion.span>
 
         <div className='account flex_col_start'>
           <h5 className='name'>Hey, {f_name}👋</h5>
