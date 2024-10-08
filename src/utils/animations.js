@@ -2,7 +2,7 @@
 export const opacityAnimation = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { delay: 0.1, duration: 0.2 },
+  transition: { delay: 0.1, duration: 0.2, ease: "easeInOut" },
 };
 export const scaleSpringyAnimation = {
   initial: { scale: 0 },

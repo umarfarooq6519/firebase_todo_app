@@ -18,9 +18,7 @@ const OngoingTasksPage = () => {
         <Link to='/dashboard'>
           <img src={arrow_left} alt='Go back' className='icon' />
         </Link>
-        <div className='heading_animation'>
-          <motion.h3 {...opacityAnimation}>Ongoing Tasks</motion.h3>
-        </div>
+        <motion.h3 {...opacityAnimation}>Ongoing Tasks</motion.h3>
       </div>
 
       <div className='content container'>
