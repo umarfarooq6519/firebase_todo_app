@@ -1,86 +1,40 @@
 import { useState } from "react";
-import { useDBcontext } from "../../contexts/DBContext";
-import {
-  Dropdown,
-  MenuButton,
-  Menu,
-  MenuItem,
-  Checkbox,
-  LinearProgress,
-  Snackbar,
-} from "@mui/joy";
+import { Checkbox, LinearProgress } from "@mui/joy";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "../../utils/animations";
 
+import { useDBcontext } from "../../contexts/DBContext";
+
+import TaskMenu from "../TaskMenu/TaskMenu";
+import SnackbarComponent from "../Snackbar/Snackbar";
 import CreateTask from "../CreateTask/CreateTask";
-import vertical_menu from "/vertical_menu.svg";
-import bin_icon from "/bin_icon.svg";
+
 import date_icon from "/date_icon.svg";
 import "./TodoList.css";
 
 function TodoList({ tasks, input }) {
-  const [snackbar, setSnackbar] = useState({ open: false, color: "", msg: "" });
-
   const { delTask, taskLoading, updateTaskCompleted } = useDBcontext();
 
-  const sortedTasks = tasks.sort((a, b) => {
-    const aTime = a.createdAt.toDate();
-    const bTime = b.createdAt.toDate();
-    return bTime - aTime; // Sort by recent
+  const [snackbarState, setSnackbarState] = useState({
+    open: false,
+    color: "",
+    msg: "",
   });
-
-  // console.log(sortedTasks);
 
   const handleDelTask = async (taskID) => {
     // function to handle delete task
-    setSnackbar({ open: true, color: "danger", msg: "Task Deleted!" });
+    setSnackbarState({ open: true, color: "danger", msg: "Task Deleted!" });
     await delTask(taskID);
 
     setTimeout(() => {
       // Set snackbar to false after 1.5s
-      setSnackbar({ open: false, color: "", msg: "" });
+      setSnackbarState({ open: false, color: "", msg: "" });
     }, 1500);
   };
 
   const handleTaskCompletion = async (task) => {
     // toggle task complete state (boolean)
     await updateTaskCompleted(task);
-  };
-
-  const ItemMenu = (task) => {
-    return (
-      <Dropdown>
-        <MenuButton
-          variant='plain'
-          size='sm'
-          sx={{
-            padding: "0",
-          }}
-        >
-          <img src={vertical_menu} alt='...' className='icon' />
-        </MenuButton>
-        <Menu
-          variant='plain'
-          size='sm'
-          sx={{
-            padding: "0",
-          }}
-        >
-          <MenuItem
-            variant='soft'
-            color='danger'
-            className='menu_item task_delete_menu'
-            onClick={() => handleDelTask(task.task.id)}
-            sx={{
-              padding: "0 10px",
-              border: "0",
-              fontSize: "16px",
-            }}
-          >
-            <img src={bin_icon} alt='' className='icon bin_icon' />
-            Delete
-          </MenuItem>
-        </Menu>
-      </Dropdown>
-    );
   };
 
   if (taskLoading) {
@@ -91,30 +45,38 @@ function TodoList({ tasks, input }) {
     <p className='empty_tasks flex_center'>It's empty here!😕</p>
   );
 
-  const SnackbarAlert = () => {
-    return (
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={1500}
-        color={snackbar.color ? snackbar.color : "neutral"}
-        variant='soft'
-        sx={{
-          minWidth: "fit-content",
-          border: "1px solid currentColor",
-          padding: "10px 20px",
-        }}
-      >
-        {snackbar.msg}
-      </Snackbar>
-    );
+  const sortedTasks = tasks.sort((a, b) => {
+    const aTime = a.createdAt.toDate();
+    const bTime = b.createdAt.toDate();
+    return bTime - aTime; // Sort by recent
+  });
+
+  const staggerAnimation = {
+    hidden: { opacity: 0, transition: { staggerChildren: 0.1 } },
+    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
   };
+
+  const childAnimation = {
+    hidden: { opacity: 0, y: 10 },
+    show: { opacity: 1, y: 0 },
+  };
+
+  // ########## Tasks List ############
 
   const TasksList = () => {
     return (
-      <ul className='todo_list flex_col_start'>
-        <SnackbarAlert />
+      <motion.ul
+        className='todo_list flex_col_start'
+        variants={staggerAnimation}
+        initial='hidden'
+        animate='show'
+      >
         {sortedTasks.map((task) => (
-          <li key={task.id} className='item flex_between'>
+          <motion.li
+            key={task.id}
+            className='item flex_between'
+            variants={childAnimation} // Apply the child animation
+          >
             <Checkbox
               sx={{ marginRight: "6px" }}
               color='neutral'
@@ -148,11 +110,10 @@ function TodoList({ tasks, input }) {
                 {task.desc}
               </span>
             </div>
-
-            <ItemMenu task={task} />
-          </li>
+            <TaskMenu onClick={() => handleDelTask(task.id)} />
+          </motion.li>
         ))}
-      </ul>
+      </motion.ul>
     );
   };
 
@@ -163,9 +124,10 @@ function TodoList({ tasks, input }) {
       {tasks.length == 0 ? emptyTasks : <TasksList />}
       {input && (
         <div className='create_task_wrapper'>
-          <CreateTask setSnackbar={setSnackbar} />
+          <CreateTask />
         </div>
       )}
+      <SnackbarComponent snackbarState={snackbarState} />
     </>
   );
 }

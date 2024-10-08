@@ -17,3 +17,7 @@
   width: var(--global-icon-xl);
   margin-top: -3px;
 }
+.ongoing_tasks .wrapper .heading_animation,
+.completed_tasks .wrapper .heading_animation {
+  overflow: hidden;
+}

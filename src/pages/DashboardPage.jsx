@@ -1,77 +1,79 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Divider, LinearProgress, Snackbar } from "@mui/joy";
-
-import { useDBcontext } from "../contexts/DBContext";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "../utils/animations";
 
 import CreateTask from "../components/CreateTask/CreateTask";
 import FancyBox from "../components/FancyBox/FancyBox";
 import FancyProgressBox from "../components/ProgressBox/ProgressBox";
+import SnackbarComponent from "../components/Snackbar/Snackbar";
 
 import dashboard_icon from "/dashboard_icon.svg";
 
 // ####################
 
 function DashboardPage() {
-  const { taskLoading } = useDBcontext();
-  const [snackbar, setSnackbar] = useState({ open: false, color: "", msg: "" });
+  const [snackbarState, setSnackbarState] = useState({
+    open: false,
+    color: "",
+    msg: "",
+  });
 
   const navigate = useNavigate();
 
-  const SnackbarAlert = () => {
-    return (
-      <Snackbar
-        open={snackbar.open}
-        autoHideDuration={1500}
-        color={snackbar.color ? snackbar.color : "neutral"}
-        variant='soft'
-        sx={{
-          minWidth: "fit-content",
-          border: "1px solid currentColor",
-          padding: "10px 20px",
-        }}
-      >
-        {snackbar.msg}
-      </Snackbar>
-    );
+  const staggerAnimation = {
+    hidden: { opacity: 0, y: 20 },
+    show: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
   };
 
-  // ########### Dashboard ###########
+  const childAnimation = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  };
+
+  // ############# Dashboard ##############
 
   return (
     <>
-      <h3 className='heading flex_start'>
-        <img src={dashboard_icon} className='icon' alt='' /> Dashboard
-      </h3>
+      <div className='heading_animation' style={{ overflow: "hidden" }}>
+        <motion.h3 {...opacityAnimation} className='heading flex_start'>
+          <img src={dashboard_icon} className='icon' alt='' /> Dashboard
+        </motion.h3>
+      </div>
 
-      {taskLoading ? (
-        <LinearProgress thickness={2} color='neutral' variant='soft' />
-      ) : (
-        <>
-          <div className='main_menu'>
-            <div className='row_1'>
-              <FancyProgressBox text='Your Progress' />
-            </div>
-            <div className='row_2'>
-              <FancyBox
-                handleClick={() => navigate("/dashboard/ongoing")}
-                text='Ongoing Tasks'
-                tasks='ongoing'
-              />
-              <FancyBox
-                handleClick={() => navigate("/dashboard/completed")}
-                text='Completed Tasks'
-                tasks='completed'
-              />
-            </div>
-          </div>
-        </>
-      )}
+      <motion.div
+        className='main_menu'
+        variants={staggerAnimation}
+        initial='hidden' // Updated from 'initial'
+        animate='show' // Updated from 'animate'
+      >
+        <motion.div className='row_1' variants={childAnimation}>
+          <FancyProgressBox text='Your Progress' />
+        </motion.div>
+        <motion.div className='row_2' variants={childAnimation}>
+          <FancyBox
+            handleClick={() => navigate("/dashboard/ongoing")}
+            text='Ongoing Tasks'
+            tasks='ongoing'
+          />
+          <FancyBox
+            handleClick={() => navigate("/dashboard/completed")}
+            text='Completed Tasks'
+            tasks='completed'
+          />
+        </motion.div>
+      </motion.div>
 
-      <SnackbarAlert />
+      <SnackbarComponent snackbarState={snackbarState} />
 
       <div className='create_task_wrapper'>
-        <CreateTask setSnackbar={setSnackbar} />
+        <CreateTask setSnackbarState={setSnackbarState} />
       </div>
     </>
   );

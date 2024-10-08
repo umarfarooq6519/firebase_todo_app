@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "../utils/animations";
 
 import { useDBcontext } from "../contexts/DBContext";
 
 import TodoList from "../components/TodoList/TodoList";
-
 import arrow_left from "/arrow_left.svg";
 
 const OngoingTasksPage = () => {
@@ -17,7 +18,9 @@ const OngoingTasksPage = () => {
         <Link to='/dashboard'>
           <img src={arrow_left} alt='Go back' className='icon' />
         </Link>
-        <h3>Ongoing Tasks</h3>
+        <div className='heading_animation'>
+          <motion.h3 {...opacityAnimation}>Ongoing Tasks</motion.h3>
+        </div>
       </div>
 
       <div className='content container'>

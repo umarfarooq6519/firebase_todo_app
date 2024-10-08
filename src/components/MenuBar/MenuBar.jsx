@@ -2,12 +2,18 @@ import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../contexts/AuthContext";
 import { Dropdown, MenuButton, Menu, MenuItem } from "@mui/joy";
 import { motion } from "framer-motion";
+import {
+  scaleSpringyAnimation,
+  fromTopAnimation,
+} from "../../utils/animations";
 
 import UserAvatar from "../UserAvatar/UserAvatar";
 
 import signout_icon from "/signout_icon.svg";
 import menu_icon from "/menu_icon.svg";
 import "./MenuBar.css";
+
+// #########################################
 
 function MenuBar() {
   const navigate = useNavigate();
@@ -25,7 +31,38 @@ function MenuBar() {
     }
   };
 
-  const AccountMenu = (
+  // ################### MenuBar #####################
+
+  return (
+    <div className='menu_bar container flex_between'>
+      <div className='content flex_start'>
+        <motion.span {...scaleSpringyAnimation} className='avatar_wrapper'>
+          <UserAvatar user={user} />
+        </motion.span>
+
+        <motion.div
+          className='account flex_col_start'
+          style={{ overflow: "hidden" }}
+        >
+          <motion.h5 {...fromTopAnimation} className='name'>
+            Hey, {f_name}👋
+          </motion.h5>
+          <p className='greetings'>What's on your mind today?</p>
+        </motion.div>
+      </div>
+
+      <motion.span {...scaleSpringyAnimation} className='dropdown'>
+        <AccDropdown onClick={handleSignout} email={email} />
+      </motion.span>
+    </div>
+  );
+}
+
+// ####################################################
+
+const AccDropdown = ({ onClick, email }) => {
+  // Account Dropdown Component
+  return (
     <Dropdown>
       <MenuButton
         variant='plain'
@@ -39,9 +76,7 @@ function MenuBar() {
       <Menu
         variant='plain'
         size='md'
-        sx={{
-          padding: "0",
-        }}
+        sx={{ padding: "0", position: "absolute" }}
       >
         <MenuItem variant='plain' color='plain'>
           <span className='menu_item'>
@@ -49,7 +84,7 @@ function MenuBar() {
           </span>
         </MenuItem>
         <MenuItem variant='soft' color='danger'>
-          <button className='menu_item' type='button' onClick={handleSignout}>
+          <button className='menu_item' type='button' onClick={onClick}>
             <img src={signout_icon} alt='' className='icon' />
             Sign Out
           </button>
@@ -57,28 +92,6 @@ function MenuBar() {
       </Menu>
     </Dropdown>
   );
-
-  return (
-    <div className='menu_bar container flex_between'>
-      <div className='content flex_start'>
-        <motion.span
-          className='avatar_wrapper'
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.2 }}
-        >
-          <UserAvatar user={user} />
-        </motion.span>
-
-        <div className='account flex_col_start'>
-          <h5 className='name'>Hey, {f_name}👋</h5>
-          <p className='greetings'>What's on your mind today?</p>
-        </div>
-      </div>
-
-      <span className='dropdown'>{AccountMenu}</span>
-    </div>
-  );
-}
+};
 
 export default MenuBar;

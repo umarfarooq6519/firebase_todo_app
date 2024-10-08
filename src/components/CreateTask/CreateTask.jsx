@@ -8,10 +8,16 @@ import SecondaryBtn from "../SecondaryBtn/SecondaryBtn";
 import PrimaryBtn from "../PrimaryBtn/PrimaryBtn";
 
 import plus_icon from "/plus_icon.svg";
-import './CreateTask.css';
+import "./CreateTask.css";
+import SnackbarComponent from "../Snackbar/Snackbar";
 
-function CreateTask({ setSnackbar }) {
-  const { addTask } = useDBcontext(); // using firestore.js variables
+function CreateTask() {
+  const { addTask } = useDBcontext();
+  const [snackbarState, setSnackbarState] = useState({
+    open: false,
+    color: "",
+    msg: "",
+  });
 
   const [title, setTitle] = useState("");
   const [desc, setDesc] = useState("");
@@ -31,7 +37,7 @@ function CreateTask({ setSnackbar }) {
       // if empty don't do anything
       if (title.trim() === "" && desc.trim() === "") return;
       const createdAt = new Date();
-      setSnackbar({ open: true, color: "success", msg: "Task Added!" }); // alert
+      setSnackbarState({ open: true, color: "success", msg: "Task Added!" }); // alert
       setModalOpen(false);
       await addTask(title, desc, dueDate, createdAt);
     } catch (error) {
@@ -42,7 +48,7 @@ function CreateTask({ setSnackbar }) {
       setDueDate(null);
       setTimeout(() => {
         // Set snackbar to false after 1.5s
-        setSnackbar({ open: false, color: "", msg: "" });
+        setSnackbarState({ open: false, color: "", msg: "" });
       }, 1500);
     }
   };
@@ -95,6 +101,7 @@ function CreateTask({ setSnackbar }) {
         onClick={() => setModalOpen(!modalOpen)}
         icon={<img src={plus_icon} className='icon' />}
       />
+      <SnackbarComponent snackbarState={snackbarState} />
     </>
   );
 }

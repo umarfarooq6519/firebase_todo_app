@@ -114,7 +114,11 @@ button:disabled {
   height: 100%;
   margin-right: 4px;
 }
-
+.no_overflow {
+  width: 100%;
+  padding: 1px;
+  overflow: hidden;
+}
 /* ############ Global Shadow ############ */
 .shadow_sm {
   box-shadow: var(--global-shadow-sm);

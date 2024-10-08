@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Divider } from "@mui/joy";
+import { motion } from "framer-motion";
+import { opacityAnimation } from "../utils/animations";
 
 import { useAuthContext } from "../contexts/AuthContext";
 
@@ -13,10 +15,17 @@ import warning_icon from "/warning_icon.svg";
 import signin_icon from "/signin_icon.svg";
 
 function SigninPage() {
-  const { error, setError, loading, googleSignin, emailSignin } =
+  const { user, error, setError, loading, googleSignin, emailSignin } =
     useAuthContext(); // access auth.js variables
 
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (user) navigate("/dashboard");
+
+    // Clear the error message when the component unmounts
+    setError("");
+  }, [user]);
 
   // state hooks for form input
   const [email, setEmail] = useState("");
@@ -48,11 +57,6 @@ function SigninPage() {
     }
   };
 
-  useEffect(() => {
-    // Clear the error message when the component unmounts
-    setError("");
-  }, []);
-
   if (loading) {
     return <Loading />;
   }
@@ -60,7 +64,7 @@ function SigninPage() {
   // ############ Signin Page ############
 
   return (
-    <section className='signin_page'>
+    <motion.section {...opacityAnimation} className='signin_page'>
       <div className='content container'>
         <h2 className='heading'>
           Continue with <br /> existing Account👋
@@ -109,7 +113,7 @@ function SigninPage() {
           <Link to='/'>Sign-up</Link>
         </p>
       </div>
-    </section>
+    </motion.section>
   );
 }
 
