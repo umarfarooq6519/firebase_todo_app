@@ -1,12 +1,12 @@
 import { motion } from "framer-motion";
-import { opacityAnimation } from "../../utils/animations";
+import { scaleSpringyAnimation } from "../../utils/animations";
 
 import "./PrimaryBtn.css";
 
 const PrimaryBtn = ({ icon, text }) => {
   return (
     <motion.button
-      {...opacityAnimation}
+      {...scaleSpringyAnimation}
       type='submit'
       className='btn primary_btn flex_center'
     >

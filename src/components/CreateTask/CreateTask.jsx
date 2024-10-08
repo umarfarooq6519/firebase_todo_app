@@ -1,5 +1,10 @@
 import { useEffect, useState } from "react";
 import { Modal, ModalDialog, ModalClose } from "@mui/joy";
+import { motion } from "framer-motion";
+import {
+  opacityAnimation,
+  scaleSpringyAnimation,
+} from "../../utils/animations";
 
 import { useDBcontext } from "../../contexts/DBContext";
 import parseFormatDate from "../../utils/dateUtils";
@@ -58,8 +63,12 @@ function CreateTask() {
       <Modal open={modalOpen} onClose={() => setModalOpen(false)}>
         <ModalDialog>
           <ModalClose />
-          <form onSubmit={handleAddTask} className='todo_form flex_col_between'>
-            <h4 className='modal_heading'>Create task</h4>
+          <motion.form
+            {...opacityAnimation}
+            onSubmit={handleAddTask}
+            className='todo_form flex_col_between'
+          >
+            <motion.h4 className='modal_heading'>Create task</motion.h4>
             <span className='form_item'>
               <label htmlFor='title'>Title</label>
               <input
@@ -91,7 +100,7 @@ function CreateTask() {
             </span>
 
             <PrimaryBtn text='Submit' />
-          </form>
+          </motion.form>
         </ModalDialog>
       </Modal>
 
