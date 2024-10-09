@@ -2,7 +2,7 @@
 export const opacityAnimation = {
   initial: { opacity: 0 },
   animate: { opacity: 1 },
-  transition: { delay: 0.1, duration: 0.2, ease: "easeInOut" },
+  transition: { delay: 0, duration: 0.5, ease: "easeInOut" },
 };
 export const scaleSpringyAnimation = {
   initial: { scale: 0 },
@@ -11,15 +11,16 @@ export const scaleSpringyAnimation = {
     delay: 0.1,
     duration: 0.5,
     type: "spring",
+    ease: "easeInOut",
   },
 };
 export const fromTopAnimation = {
   initial: { y: -30 },
   animate: { y: 0 },
-  transition: { delay: 0.1, duration: 0.4, type: "spring" },
+  transition: { delay: 0.1, duration: 0.4, type: "spring", ease: "easeInOut" },
 };
 export const fancyBoxAnimation = {
   initial: { opacity: 0, scale: 0 },
   animate: { opacity: 1, scale: 1 },
-  transition: { delay: 0.5, duration: 0.4, type: "spring" },
+  transition: { delay: 0.5, duration: 0.4, type: "spring", ease: "easeInOut" },
 };
