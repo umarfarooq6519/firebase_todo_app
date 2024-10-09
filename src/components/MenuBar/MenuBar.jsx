@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   scaleSpringyAnimation,
   fromTopAnimation,
+  opacityAnimation,
 } from "../../utils/animations";
 
 import UserAvatar from "../UserAvatar/UserAvatar";
@@ -79,15 +80,20 @@ const AccDropdown = ({ onClick, email }) => {
         sx={{ padding: "0", position: "absolute" }}
       >
         <MenuItem variant='plain' color='plain'>
-          <span className='menu_item'>
+          <motion.span {...scaleSpringyAnimation} className='menu_item'>
             <p className='email'>{email}</p>
-          </span>
+          </motion.span>
         </MenuItem>
         <MenuItem variant='soft' color='danger'>
-          <button className='menu_item' type='button' onClick={onClick}>
+          <motion.button
+            {...scaleSpringyAnimation}
+            className='menu_item'
+            type='button'
+            onClick={onClick}
+          >
             <img src={signout_icon} alt='' className='icon' />
             Sign Out
-          </button>
+          </motion.button>
         </MenuItem>
       </Menu>
     </Dropdown>
