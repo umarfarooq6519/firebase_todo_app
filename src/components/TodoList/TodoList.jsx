@@ -52,13 +52,13 @@ function TodoList({ tasks, input }) {
   });
 
   const staggerAnimation = {
-    hidden: { opacity: 0, transition: { staggerChildren: 0.1 } },
-    show: { opacity: 1, transition: { staggerChildren: 0.1 } },
+    hidden: { transition: { staggerChildren: 0.1 } },
+    show: { transition: { staggerChildren: 0.1 } },
   };
 
   const childAnimation = {
-    hidden: { opacity: 0, y: 10 },
-    show: { opacity: 1, y: 0 },
+    hidden: { y: 20 },
+    show: { y: 0 },
   };
 
   // ########## Tasks List ############
