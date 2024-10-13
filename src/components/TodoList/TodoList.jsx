@@ -57,8 +57,8 @@ function TodoList({ tasks, input }) {
   };
 
   const childAnimation = {
-    hidden: { y: 20 },
-    show: { y: 0 },
+    hidden: { opacity: 0, y: 30 },
+    show: { opacity: 1, y: 0 },
   };
 
   // ########## Tasks List ############
